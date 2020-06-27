@@ -1,0 +1,250 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>BNF范式和EBNF范式详解 | zzZ5的博客</title><meta name="description" content="定义编程语言的语言编程语言, 协议规范, 查询语言, 文件格式, 模式语言, 内存布局, 配置文件, 标记语言, 格式化语言和元语言等等塑造了我们计算的方式. 那么, 是什么塑造了这些语言呢?本文详解了常见的语言表示法: Backus-Naur范式(BNF) 和 扩展的Backus-Naur范式(EBNF). BNF范式BNF范式(BNF: Backus-Naur Form 的缩写)即巴科斯范式,"><meta name="keywords" content="后端, python, numpy, matplotlib, pandas, 爬虫, 程序猿, 程序媛, 编程, 代码, 开源"><meta name="author" content="zzZ5,baoju_liu@foxmial.com"><meta name="copyright" content="zzZ5"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/assets/img/zzz5.ico"><link rel="canonical" href="https://zzz5.xyz/2019/08/28/others/BNFandEBNF/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//ta.qq.com"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta property="og:type" content="article"><meta property="og:title" content="BNF范式和EBNF范式详解"><meta property="og:url" content="https://zzz5.xyz/2019/08/28/others/BNFandEBNF/"><meta property="og:site_name" content="zzZ5的博客"><meta property="og:description" content="定义编程语言的语言编程语言, 协议规范, 查询语言, 文件格式, 模式语言, 内存布局, 配置文件, 标记语言, 格式化语言和元语言等等塑造了我们计算的方式. 那么, 是什么塑造了这些语言呢?本文详解了常见的语言表示法: Backus-Naur范式(BNF) 和 扩展的Backus-Naur范式(EBNF). BNF范式BNF范式(BNF: Backus-Naur Form 的缩写)即巴科斯范式,"><meta property="og:image" content="https://i.loli.net/2020/06/03/LYjJe4KXNT3nBMG.png"><meta property="article:published_time" content="2019-08-28T09:03:00.000Z"><meta property="article:modified_time" content="2020-06-27T14:46:09.506Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
+  }
+}
+var activateLightMode = function () {
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#fff')
+  }
+}
+
+var getCookies = function (name) {
+  const value = `; ${document.cookie}`
+  const parts = value.split(`; ${name}=`)
+  if (parts.length === 2) return parts.pop().split(';').shift()
+}
+
+var autoChangeMode = 'false'
+var t = getCookies('theme')
+if (autoChangeMode === '1') {
+  var isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+  var isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+  var isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined) {
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport) {
+      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour <= 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+    }
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+      if (Cookies.get('theme') === undefined) {
+        e.matches ? activateDarkMode() : activateLightMode()
+      }
+    })
+  } else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else if (autoChangeMode === '2') {
+  now = new Date()
+  hour = now.getHours()
+  isNight = hour <= 6 || hour >= 18
+  if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else {
+  if (t === 'dark') activateDarkMode()
+  else if (t === 'light') activateLightMode()
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css"><link rel="prev" title="Python之Matplotlib库学习细节补充" href="https://zzz5.xyz/2020/01/01/python/matplotlib/python-matplotlib-tips/"><link rel="next" title="暂停更新" href="https://zzz5.xyz/2019/08/06/diary/diary-2019-0806/"><script src="https://tajs.qq.com/stats?sId=500695610" charset="UTF-8"></script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: false,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: {"bookmark":{"message_prev":"按","message_next":"键将本页加入书签"},"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  baiduPush: false,
+  highlightCopy: true,
+  highlightLang: true,
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false    
+}</script><script>var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true
+  }</script><noscript><style>
+#nav {
+  opacity: 1
+}
+.justified-gallery img{
+  opacity: 1
+}
+</style></noscript><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="zzZ5的博客" type="application/atom+xml">
+</head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="https://i.loli.net/2020/06/03/OFvA9uNmodI8tki.png" onerror="onerror=null;src='/assets/blogImg/404.jpg'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">33</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">17</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">7</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-list"></i><span> 娱乐</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/photo/"><i class="fa-fw far fa-image"></i><span> Photo</span></a></li><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/animate/"><i class="fa-fw fab fa-youtube"></i><span> Animate</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw far fa-comments"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div></div></div><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#定义编程语言的语言"><span class="toc-number">1.</span> <span class="toc-text">定义编程语言的语言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BNF范式"><span class="toc-number">2.</span> <span class="toc-text">BNF范式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#BNF范式的内容"><span class="toc-number">2.1.</span> <span class="toc-text">BNF范式的内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BNF范式示例"><span class="toc-number">2.2.</span> <span class="toc-text">BNF范式示例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#EBNF范式"><span class="toc-number">3.</span> <span class="toc-text">EBNF范式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#EBNF范式的内容"><span class="toc-number">3.1.</span> <span class="toc-text">EBNF范式的内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#EBNF范式示例"><span class="toc-number">3.2.</span> <span class="toc-text">EBNF范式示例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">4.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">5.</span> <span class="toc-text">参考文献</span></a></li></ol></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://i.loli.net/2020/06/03/LYjJe4KXNT3nBMG.png)"><nav id="nav"><span class="pull-left" id="blog_name"><a class="blog_title" id="site-name" href="/">zzZ5的博客</a></span><span class="pull-right menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-list"></i><span> 娱乐</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/photo/"><i class="fa-fw far fa-image"></i><span> Photo</span></a></li><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/animate/"><i class="fa-fw fab fa-youtube"></i><span> Animate</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw far fa-comments"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div><span class="toggle-menu close"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">BNF范式和EBNF范式详解</div></div><div id="post-meta"><div class="meta-firstline"><time class="post-meta__date"><span class="post-meta__date-created" title="发表于 2019-08-28 17:03:00"><i class="far fa-calendar-alt fa-fw"></i> 发表于 2019-08-28</span><span class="post-meta__separator">|</span><span class="post-meta__date-updated" title="更新于 2020-06-27 22:46:09"><i class="fas fa-history fa-fw"></i> 更新于 2020-06-27</span></time><span class="post-meta__categories"><span class="post-meta__separator">|</span><i class="fas fa-inbox fa-fw post-meta__icon"></i><a class="post-meta__categories" href="/categories/%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB/">杂七杂八</a></span></div><div class="meta-secondline"> <span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta__icon"></i><span>字数总计:</span><span class="word-count">1.2k</span><span class="post-meta__separator">|</span><i class="far fa-clock fa-fw post-meta__icon"></i><span>阅读时长: 4 分钟</span></span></div><div class="meta-thirdline"><span class="post-meta-pv-cv"><span class="post-meta__separator">|</span><i class="far fa-eye fa-fw post-meta__icon"></i><span>阅读量:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-commentcount"></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h2 id="定义编程语言的语言"><a href="#定义编程语言的语言" class="headerlink" title="定义编程语言的语言"></a>定义编程语言的语言</h2><p>编程语言, 协议规范, 查询语言, 文件格式, 模式语言, 内存布局, 配置文件, 标记语言, 格式化语言和元语言等等塑造了我们计算的方式. 那么, 是什么塑造了这些语言呢?<br>本文详解了常见的语言表示法: Backus-Naur范式(BNF) 和 扩展的Backus-Naur范式(EBNF).<br><a id="more"></a></p>
+<h2 id="BNF范式"><a href="#BNF范式" class="headerlink" title="BNF范式"></a>BNF范式</h2><p>BNF范式(BNF: Backus-Naur Form 的缩写)即巴科斯范式, 是由 John Backus 和 Peter Naur 首先引入的用来描述计算机语言语法的符号集.<br>现在, 几乎每一位新编程语言书籍的作者都使用巴科斯范式来定义编程语言的语法规则.</p>
+<h3 id="BNF范式的内容"><a href="#BNF范式的内容" class="headerlink" title="BNF范式的内容"></a>BNF范式的内容</h3><p>BNF范式中的每个标准语法都具有以下结构:</p>
+<p><code>name ::= expansion</code></p>
+<p>其中 ::== 符号表示为 “可扩展为” 或 “可替换为”, “可定义为”.<br>在某些文本中, name 也称为非终止符, 一般为语言中某些抽象的概念.</p>
+<p>BNF范式中的每个 name 都用尖括号&lt;&gt;括起来, 无论它出现在语法中的何处.<br>expansion 是包含终止符和非终止符的表达式, 通过排序和选择连接在一起.<br>终止符是像 + 或 function 这样的字符, 或者是一类字符 (如 integer), 一般为可以直接出现在语言中的符号.</p>
+<p>竖线&#124; 表示选择, 表示在其左右两边任选一项, 相当于 “or” .<br>双引号”” 表示为其原本含义.</p>
+<h3 id="BNF范式示例"><a href="#BNF范式示例" class="headerlink" title="BNF范式示例"></a>BNF范式示例</h3><p>在BNF中, 经典的表达式语法是:</p>
+<pre><code class="lang-BNF">&lt;expr&gt; ::= &lt;term&gt; + &lt;expr&gt;
+        |  &lt;term&gt;
+
+&lt;term&gt; ::= &lt;factor&gt; * &lt;term&gt;
+        |  &lt;factor&gt;
+
+&lt;factor&gt; ::= ( &lt;expr&gt; )
+          |  &lt;const&gt;
+
+&lt;const&gt; ::= integer
+</code></pre>
+<p>C语言的声明语句可以用BNF这样描述:</p>
+<pre><code class="lang-BNF">&lt;声明语句&gt; ::= &lt;类型&gt;&lt;标识符&gt;; | &lt;类型&gt;&lt;标识符&gt;[&lt;数字&gt;];
+</code></pre>
+<p>这一句中 &lt;声明语句&gt; 这个非终结符(语言中某些抽象的概念)被定义成了两种形式(上面用 &#124; 隔开的两部分), 同时在这里引入了三个终结符(可以直接出现在语言中的符号): 分号; , 左方括号[ , 右方括号 ].</p>
+<h2 id="EBNF范式"><a href="#EBNF范式" class="headerlink" title="EBNF范式"></a>EBNF范式</h2><p>EBNF范式(Extended Backus-Naur form), 是对BNF范式的扩展.</p>
+<h3 id="EBNF范式的内容"><a href="#EBNF范式的内容" class="headerlink" title="EBNF范式的内容"></a>EBNF范式的内容</h3><p>虽然EBNF是对BNF的扩展, 但并非所有扩展都是严格意义上的超集, 因为有些更改了规则定义关系: 将 ::= 更改为 = , 而另一些则删除了非终止符的尖括号(所以可以不必使用尖括号).</p>
+<p>比EBNF范式之间的微小语法差异更重要的是扩展中允许的附加操作.</p>
+<p>使用了在标准中提议为正规表示的下列字符:</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>用途</th>
+<th>符号表示</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>定义</td>
+<td>=  &#124; ::=</td>
+</tr>
+<tr>
+<td>串接</td>
+<td>,</td>
+</tr>
+<tr>
+<td>终止</td>
+<td>;</td>
+</tr>
+<tr>
+<td>分隔</td>
+<td>&#124;</td>
+</tr>
+<tr>
+<td>可选</td>
+<td>[ … ]</td>
+</tr>
+<tr>
+<td>重复</td>
+<td>{ … }</td>
+</tr>
+<tr>
+<td>分组</td>
+<td>( … )</td>
+</tr>
+<tr>
+<td>双引号</td>
+<td>“ … “</td>
+</tr>
+<tr>
+<td>单引号</td>
+<td>‘ … ‘</td>
+</tr>
+<tr>
+<td>注释</td>
+<td>(<em> … </em>)</td>
+</tr>
+<tr>
+<td>特殊序列</td>
+<td>? … ?</td>
+</tr>
+<tr>
+<td>除外</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="EBNF范式示例"><a href="#EBNF范式示例" class="headerlink" title="EBNF范式示例"></a>EBNF范式示例</h3><p>以BNF风格定义为:</p>
+<pre><code class="lang-BNF">&lt;signed number&gt; = &lt;sign&gt; , &lt;number&gt; | &lt;number&gt; ;
+</code></pre>
+<p>可以在EBNF中表示为:</p>
+<pre><code class="lang-EBNF">&lt;signed number&gt; = [ &lt;sign&gt; , ] &lt;number&gt; ;
+</code></pre>
+<p>只允许赋值的简单编程语言可以用 EBNF 定义为:</p>
+<pre><code class="lang-EBNF">program = &#39;PROGRAM&#39; , white space , identifier , white space ,
+           &#39;BEGIN&#39; , white space ,
+           { assignment , &quot;;&quot; , white space } ,
+           &#39;END.&#39; ;
+identifier = alphabetic character , [ { alphabetic character | digit } ] ;
+number = [ &quot;-&quot; ] , digit , [ { digit } ] ;
+string = &#39;&quot;&#39; , { all characters − &#39;&quot;&#39; } , &#39;&quot;&#39; ;
+assignment = identifier , &quot;:=&quot; , ( number | identifier | string ) ;
+alphabetic character = &quot;A&quot; | &quot;B&quot; | &quot;C&quot; | &quot;D&quot; | &quot;E&quot; | &quot;F&quot; | &quot;G&quot;
+                     | &quot;H&quot; | &quot;I&quot; | &quot;J&quot; | &quot;K&quot; | &quot;L&quot; | &quot;M&quot; | &quot;N&quot;
+                     | &quot;O&quot; | &quot;P&quot; | &quot;Q&quot; | &quot;R&quot; | &quot;S&quot; | &quot;T&quot; | &quot;U&quot;
+                     | &quot;V&quot; | &quot;W&quot; | &quot;X&quot; | &quot;Y&quot; | &quot;Z&quot; ;
+digit = &quot;0&quot; | &quot;1&quot; | &quot;2&quot; | &quot;3&quot; | &quot;4&quot; | &quot;5&quot; | &quot;6&quot; | &quot;7&quot; | &quot;8&quot; | &quot;9&quot; ;
+white space = ? white space characters ? ;
+all characters = ? all visible characters ? ;
+</code></pre>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>EBNF 排除了 BNF 的一些缺陷:</p>
+<ul>
+<li>BNF 为自身使用了符号 (&lt;, &gt;, |, ::=). 当它们出现在要定义的语言中的时候, BNF 不能不加以修改或解释的使用.</li>
+<li><p>BNF-语法在一行中只表示一个规则.<br>EBNF 解决了这些问题:</p>
+</li>
+<li><p>终结符被严格的包围在引号 (“…” 或 ‘…’) 中. 给非终结符的尖括号 (“&lt;…&gt;”)可以省略.</p>
+</li>
+<li>通常使用终止字符分号结束一个规则.</li>
+</ul>
+<p>进一步还提供了定义重复次数, 排除法选择(比如除了引号的所有字符)和注释等的增强机制.</p>
+<p>不管所有这些增强, EBNF 在能定义的语言的意义上不比 BNF 更强大. 在原理上用 EBNF 定义的任何文法都可以用 BNF 表达. 但是经常导致可观的更多规则的表示.</p>
+<p>在某些场合任何扩展的 BNF 都被称为 EBNF.</p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p><em>1. <a href="https://zh.wikipedia.org/wiki/%E6%89%A9%E5%B1%95%E5%B7%B4%E7%A7%91%E6%96%AF%E8%8C%83%E5%BC%8F" target="_blank" rel="noopener">扩展巴科斯范式 - 维基百科，自由的百科全书</a></em><br><em>2. <a href="https://www.cnblogs.com/zxsoft/archive/2009/09/05/1560984.html" target="_blank" rel="noopener">什么是BNF范式,什么又是EBNF范式? - 张旋 - 博客园</a></em></p>
+</div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:baoju_liu@foxmial.com">zzZ5</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://zzz5.xyz/2019/08/28/others/BNFandEBNF/">https://zzz5.xyz/2019/08/28/others/BNFandEBNF/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://zzZ5.xyz" target="_blank">zzZ5的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2020/06/25/mUeOJrx2jIaTbM3.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"/><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><div class="post-reward"><button class="reward-button"><i class="fas fa-qrcode"></i> 打赏<div class="reward-main"><ul class="reward-all"><li class="reward-item"><img class="post-qr-code__img" src="/assets/img/wechat.png" alt="wechat" onclick="window.open('/assets/img/wechat.png')"/><div class="post-qr-code__desc">wechat</div></li><li class="reward-item"><img class="post-qr-code__img" src="/assets/img/alipay.png" alt="alipay" onclick="window.open('/assets/img/alipay.png')"/><div class="post-qr-code__desc">alipay</div></li></ul></div></button></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/01/01/python/matplotlib/python-matplotlib-tips/"><img class="prev-cover" src="https://i.loli.net/2020/06/03/1Go9cC6Y3b2Vdif.png" onerror="onerror=null;src='/assets/blogImg/404.jpg'"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Python之Matplotlib库学习细节补充</div></div></a></div><div class="next-post pull-right"><a href="/2019/08/06/diary/diary-2019-0806/"><img class="next-cover" src="https://i.loli.net/2020/06/03/uhAQD4IUr2kfoM6.gif" onerror="onerror=null;src='/assets/blogImg/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">暂停更新</div></div></a></div></nav><hr><div id="post-comment"><div class="comment_headling"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div class="vcomment" id="vcomment"></div><script src="https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js"></script><script>var requestSetting = function (from,set) {
+  var from = from
+  var setting = set.split(',').filter(function(item){
+  return from.indexOf(item) > -1
+  });
+  setting = setting.length == 0 ? from :setting;
+  return setting
+}
+
+var guestInfo = requestSetting(['nick','mail','link'],'nick,mail,link')
+var requiredFields = requestSetting(['nick','mail'],'nick,mail')
+
+window.valine = new Valine({
+  el:'#vcomment',
+  appId: 'wugk9aIpc580sE0GdxsCb7LL-MdYXbMMI',
+  appKey: 'WmxJKdt4J543WQWOM9X0Usyt',
+  placeholder: '记得留下你的昵称和邮箱...应该会快速收到回复',
+  avatar: 'monsterid',
+  meta: guestInfo,
+  pageSize: '10',
+  lang: 'zh-CN',
+  recordIP: true,
+  serverURLs: '',
+  emojiCDN: '',
+  emojiMaps: "",
+  enableQQ: false,
+  requiredFields: requiredFields
+});</script></div></article></main><footer id="footer" style="background-image: url(https://i.loli.net/2020/06/03/LYjJe4KXNT3nBMG.png)" data-type="photo"><div id="footer-wrap"><div class="copyright">&copy;2020 By zzZ5</div><div class="framework-info"><span>驱动 </span><a href="https://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener"><span>Butterfly</span></a></div><div class="footer_custom_text">Hi, welcome to my <a href="https://zzZ5.xyz/">blog</a>!</div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><button id="readmode" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font_plus" title="放大字体"><i class="fas fa-plus"></i></button><button id="font_minus" title="缩小字体"><i class="fas fa-minus"></i></button><button class="translate_chn_to_cht" id="translateLink" title="简繁转换">繁</button><button id="darkmode" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" title="设置"><i class="fas fa-cog"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="scroll_to_comment fas fa-comments"></i></a><button class="close" id="mobile-toc-button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="noopener" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div class="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script id="canvas_nest" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="/js/third-party/canvas-nest.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script src="/js/third-party/click_heart.js"></script><script src="/js/search/local-search.js"></script></body></html>

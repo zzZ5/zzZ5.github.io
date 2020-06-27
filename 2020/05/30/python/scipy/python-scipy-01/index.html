@@ -1,0 +1,523 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Python之Scipy库学习(1) | zzZ5的博客</title><meta name="description" content="scipy库 中有许多科学计算常见问题的工具, 它的子模块对应于不同的应用, 比如插值, 积分, 优化, 图像处理, 统计和特殊功能等.scipy 是Python科学计算环境的核心. 它被设计为利用 numpy 数组进行高效的运行, 从这个角度来讲, scipy和numpy是密不可分的. SciPy结构SciPy被组织成覆盖不同科学计算领域的子包. 下表汇总了这些信息:     子模块 描述"><meta name="keywords" content="python,scipy"><meta name="author" content="zzZ5,baoju_liu@foxmial.com"><meta name="copyright" content="zzZ5"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/assets/img/zzz5.ico"><link rel="canonical" href="https://zzz5.xyz/2020/05/30/python/scipy/python-scipy-01/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//ta.qq.com"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta property="og:type" content="article"><meta property="og:title" content="Python之Scipy库学习(1)"><meta property="og:url" content="https://zzz5.xyz/2020/05/30/python/scipy/python-scipy-01/"><meta property="og:site_name" content="zzZ5的博客"><meta property="og:description" content="scipy库 中有许多科学计算常见问题的工具, 它的子模块对应于不同的应用, 比如插值, 积分, 优化, 图像处理, 统计和特殊功能等.scipy 是Python科学计算环境的核心. 它被设计为利用 numpy 数组进行高效的运行, 从这个角度来讲, scipy和numpy是密不可分的. SciPy结构SciPy被组织成覆盖不同科学计算领域的子包. 下表汇总了这些信息:     子模块 描述"><meta property="og:image" content="https://i.loli.net/2020/06/03/ZURzMa91AltTmEd.png"><meta property="article:published_time" content="2020-05-30T02:06:00.000Z"><meta property="article:modified_time" content="2020-06-27T14:46:09.533Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
+  }
+}
+var activateLightMode = function () {
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#fff')
+  }
+}
+
+var getCookies = function (name) {
+  const value = `; ${document.cookie}`
+  const parts = value.split(`; ${name}=`)
+  if (parts.length === 2) return parts.pop().split(';').shift()
+}
+
+var autoChangeMode = 'false'
+var t = getCookies('theme')
+if (autoChangeMode === '1') {
+  var isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+  var isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+  var isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined) {
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport) {
+      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour <= 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+    }
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+      if (Cookies.get('theme') === undefined) {
+        e.matches ? activateDarkMode() : activateLightMode()
+      }
+    })
+  } else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else if (autoChangeMode === '2') {
+  now = new Date()
+  hour = now.getHours()
+  isNight = hour <= 6 || hour >= 18
+  if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else {
+  if (t === 'dark') activateDarkMode()
+  else if (t === 'light') activateLightMode()
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css"><link rel="prev" title="Python之Scipy库学习(2)" href="https://zzz5.xyz/2020/06/04/python/scipy/python-scipy-02/"><link rel="next" title="Python设计模式(1)" href="https://zzz5.xyz/2020/05/28/python/others/python-designPatterns-01/"><script src="https://tajs.qq.com/stats?sId=500695610" charset="UTF-8"></script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: false,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: {"bookmark":{"message_prev":"按","message_next":"键将本页加入书签"},"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  baiduPush: false,
+  highlightCopy: true,
+  highlightLang: true,
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false    
+}</script><script>var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true
+  }</script><noscript><style>
+#nav {
+  opacity: 1
+}
+.justified-gallery img{
+  opacity: 1
+}
+</style></noscript><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="zzZ5的博客" type="application/atom+xml">
+</head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="https://i.loli.net/2020/06/03/OFvA9uNmodI8tki.png" onerror="onerror=null;src='/assets/blogImg/404.jpg'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">33</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">17</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">7</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-list"></i><span> 娱乐</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/photo/"><i class="fa-fw far fa-image"></i><span> Photo</span></a></li><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/animate/"><i class="fa-fw fab fa-youtube"></i><span> Animate</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw far fa-comments"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div></div></div><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#SciPy结构"><span class="toc-number">1.</span> <span class="toc-text">SciPy结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#scipy-io-数据的输入和输出"><span class="toc-number">2.</span> <span class="toc-text">scipy.io 数据的输入和输出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#scipy-special-一些特殊数学函数"><span class="toc-number">3.</span> <span class="toc-text">scipy.special 一些特殊数学函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#scipy-linalg-线性代数操作"><span class="toc-number">4.</span> <span class="toc-text">scipy.linalg 线性代数操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#scipy-linalg-vs-numpy-linalg"><span class="toc-number">4.1.</span> <span class="toc-text">scipy.linalg vs numpy.linalg</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#线代基础操作"><span class="toc-number">4.2.</span> <span class="toc-text">线代基础操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#求矩阵的逆"><span class="toc-number">4.2.1.</span> <span class="toc-text">求矩阵的逆</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#解线性方程组"><span class="toc-number">4.2.2.</span> <span class="toc-text">解线性方程组</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#计算行列式的值"><span class="toc-number">4.2.3.</span> <span class="toc-text">计算行列式的值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#计算矩阵的伴随矩阵"><span class="toc-number">4.2.4.</span> <span class="toc-text">计算矩阵的伴随矩阵</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#求矩阵的特征值和特征向量"><span class="toc-number">4.2.5.</span> <span class="toc-text">求矩阵的特征值和特征向量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#其他矩阵操作"><span class="toc-number">4.2.6.</span> <span class="toc-text">其他矩阵操作</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#scipy-fftpack-快速傅里叶变换"><span class="toc-number">5.</span> <span class="toc-text">scipy.fftpack 快速傅里叶变换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#scipy-optimize-优化及拟合"><span class="toc-number">6.</span> <span class="toc-text">scipy.optimize 优化及拟合</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#求函数的最小值"><span class="toc-number">6.1.</span> <span class="toc-text">求函数的最小值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#寻找函数的零点"><span class="toc-number">6.2.</span> <span class="toc-text">寻找函数的零点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#曲线拟合"><span class="toc-number">6.3.</span> <span class="toc-text">曲线拟合</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-number">7.</span> <span class="toc-text">参考文献</span></a></li></ol></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://i.loli.net/2020/06/03/ZURzMa91AltTmEd.png)"><nav id="nav"><span class="pull-left" id="blog_name"><a class="blog_title" id="site-name" href="/">zzZ5的博客</a></span><span class="pull-right menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-list"></i><span> 娱乐</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/photo/"><i class="fa-fw far fa-image"></i><span> Photo</span></a></li><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/animate/"><i class="fa-fw fab fa-youtube"></i><span> Animate</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw far fa-comments"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div><span class="toggle-menu close"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">Python之Scipy库学习(1)</div></div><div id="post-meta"><div class="meta-firstline"><time class="post-meta__date"><span class="post-meta__date-created" title="发表于 2020-05-30 10:06:00"><i class="far fa-calendar-alt fa-fw"></i> 发表于 2020-05-30</span><span class="post-meta__separator">|</span><span class="post-meta__date-updated" title="更新于 2020-06-27 22:46:09"><i class="fas fa-history fa-fw"></i> 更新于 2020-06-27</span></time><span class="post-meta__categories"><span class="post-meta__separator">|</span><i class="fas fa-inbox fa-fw post-meta__icon"></i><a class="post-meta__categories" href="/categories/%E7%A7%91%E5%AD%A6%E8%AE%A1%E7%AE%97/">科学计算</a></span></div><div class="meta-secondline"> <span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta__icon"></i><span>字数总计:</span><span class="word-count">3k</span><span class="post-meta__separator">|</span><i class="far fa-clock fa-fw post-meta__icon"></i><span>阅读时长: 12 分钟</span></span></div><div class="meta-thirdline"><span class="post-meta-pv-cv"><span class="post-meta__separator">|</span><i class="far fa-eye fa-fw post-meta__icon"></i><span>阅读量:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-commentcount"></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><p>scipy库 中有许多科学计算常见问题的工具, 它的子模块对应于不同的应用, 比如插值, 积分, 优化, 图像处理, 统计和特殊功能等.<br>scipy 是Python科学计算环境的核心. 它被设计为利用 numpy 数组进行高效的运行, 从这个角度来讲, scipy和numpy是密不可分的.<br><a id="more"></a></p>
+<h2 id="SciPy结构"><a href="#SciPy结构" class="headerlink" title="SciPy结构"></a>SciPy结构</h2><p>SciPy被组织成覆盖不同科学计算领域的子包. 下表汇总了这些信息:</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>子模块</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>scipy.cluster</td>
+<td>向量计算 / Kmeans</td>
+</tr>
+<tr>
+<td>scipy.constants</td>
+<td>物理和数学常量</td>
+</tr>
+<tr>
+<td>scipy.fftpack</td>
+<td>傅里叶变换</td>
+</tr>
+<tr>
+<td>scipy.integrate</td>
+<td>积分程序</td>
+</tr>
+<tr>
+<td>scipy.interpolate</td>
+<td>插值</td>
+</tr>
+<tr>
+<td>scipy.io</td>
+<td>数据输入和输出</td>
+</tr>
+<tr>
+<td>scipy.linalg</td>
+<td>线性代数程序</td>
+</tr>
+<tr>
+<td>scipy.ndimage</td>
+<td>n-维图像包</td>
+</tr>
+<tr>
+<td>scipy.odr</td>
+<td>正交距离回归</td>
+</tr>
+<tr>
+<td>scipy.optimize</td>
+<td>优化</td>
+</tr>
+<tr>
+<td>scipy.signal</td>
+<td>信号处理</td>
+</tr>
+<tr>
+<td>scipy.sparse</td>
+<td>稀疏矩阵</td>
+</tr>
+<tr>
+<td>scipy.spatial</td>
+<td>空间数据结构和算法</td>
+</tr>
+<tr>
+<td>scipy.special</td>
+<td>一些特殊数学函数</td>
+</tr>
+<tr>
+<td>scipy.stats</td>
+<td>统计</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>SciPy 的子包需要分别导入, 例如:</p>
+<p><code>from scipy import linalg, optimize</code></p>
+<h2 id="scipy-io-数据的输入和输出"><a href="#scipy-io-数据的输入和输出" class="headerlink" title="scipy.io 数据的输入和输出"></a>scipy.io 数据的输入和输出</h2><p><a href="https://docs.scipy.org/doc/scipy/reference/tutorial/io.html" target="_blank" rel="noopener">scipy.io</a> 最常用的主要有三个方法:</p>
+<blockquote>
+<p>loadmat(file_name[, mdict, appendmat])</p>
+</blockquote>
+<p>载入 MATLAB 的 .mat 文件.</p>
+<blockquote>
+<p>savemat(file_name, mdict[, appendmat, …])</p>
+</blockquote>
+<p>将字典和文件名保存到 MATLAB 的 .mat 文件.</p>
+<blockquote>
+<p>whosmat(file_name[, appendmat])</p>
+</blockquote>
+<p>列出 MATLAB 文件的一些属性.</p>
+<p>例如：</p>
+<pre><code class="lang-python">import numpy as np
+from scipy import io as sio
+temp_data = np.ones((3, 3))
+sio.savemat(&#39;file.mat&#39;, {&#39;temp_data&#39;: temp_data}) # mat格式文件输入要求格式为字典
+data = sio.loadmat(&#39;file.mat&#39;, struct_as_record=True)
+info = sio.whosmat(&#39;file.mat&#39;)
+print(data[&#39;temp_data&#39;])
+print(info)
+# 输出的结果为:
+&#39;temp_data&#39;: 
+array([[0.30944564, 0.6779428 , 0.18910781, 0.16907513],
+       [0.84839293, 0.65481527, 0.29616549, 0.16536131],
+       [0.77168659, 0.09888839, 0.95092472, 0.46103117]])}
+[(&#39;temp_data&#39;, (3, 4), &#39;double&#39;)]
+</code></pre>
+<p>关于 scipy.io 还有其他几种文件格式的载入与输出, 这里就不详细介绍了, 只列出来在这里, 详情可以查看 <a href="https://docs.scipy.org/doc/scipy/reference/io.html" target="_blank" rel="noopener">官方文档对 scipy.io 的介绍</a>.</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>readsav(file_name[, idict, python_dict, …])</td>
+<td>读取 IDL 的 .sav 文件.</td>
+</tr>
+<tr>
+<td>mminfo(source)</td>
+<td>从类MM(Matrix Market)文件中返回大小和存储参数.</td>
+</tr>
+<tr>
+<td>mmread(source)</td>
+<td>读取类MM(Matrix Market)文件.</td>
+</tr>
+<tr>
+<td>mmwrite(target, a[, comment, field, …])</td>
+<td>将数组a写入类MM(Matrix Market)目标.</td>
+</tr>
+<tr>
+<td>wavfile.read(filename[, mmap])</td>
+<td>读取一个.wav的音轨文件.</td>
+</tr>
+<tr>
+<td>wavfile.write(filename, rate, data)</td>
+<td>将一个numpy数组写入.wav文件.</td>
+</tr>
+<tr>
+<td>arff.loadarff(f)</td>
+<td>读取一个 arff 文件.</td>
+</tr>
+<tr>
+<td>netcdf_file(filename[, mode, mmap, version, …])</td>
+<td>NetCDF数据的文件对象.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>载入和保存text, csv或其他numpy指定类型可以使用numpy包, 详见 <a href="https://zzz5.xyz/2019/04/22/python/numpy/python-numpy-03/">Python之Numpy库学习(3)</a>.</p>
+<h2 id="scipy-special-一些特殊数学函数"><a href="#scipy-special-一些特殊数学函数" class="headerlink" title="scipy.special 一些特殊数学函数"></a>scipy.special 一些特殊数学函数</h2><p>scipy.special 子包的主要特点是定义了许多数学物理的特殊函数. 可用功能包括 airy, elliptic, bessel, gamma, beta, hypergeometric, parabolic cylinder, mathieu, spheroidal wave, struve, kelvin. 还有一些低级统计函数不在 scipy.special 模块中, 因为 scipy.stats 模块为这些函数提供了更简单的接口.<br>这些函数中的大多数可以接受数组参数并返回数组结果, 遵循与NumPy中的其他数学函数相同的广播规则. 其中许多函数还接受复数作为输入.<br>下面列取几个常用的函数:</p>
+<ul>
+<li>贝塞尔函数, 比如scipy.special.jv() (第n个整型顺序的贝塞尔函数)</li>
+<li>椭圆函数 (scipy.special.ellipj() Jacobian椭圆函数, …)</li>
+<li>Gamma 函数: scipy.special.gamma(), 也要注意 scipy.special.gammaln() 将给出更高准确数值的 Gamma的log。</li>
+<li>Erf, 高斯曲线的面积：scipy.special.erf()</li>
+</ul>
+<p>详情可以查看 <a href="https://docs.scipy.org/doc/scipy/reference/special.html" target="_blank" rel="noopener">官方文档对 scipy.special 的介绍</a>.</p>
+<h2 id="scipy-linalg-线性代数操作"><a href="#scipy-linalg-线性代数操作" class="headerlink" title="scipy.linalg 线性代数操作"></a>scipy.linalg 线性代数操作</h2><p>scipy.linalg 是基于 ATLAS, LAPACK 和 BLAS 高效底层库构建的, 它具有非常高效的线性代数操作.<br>如果深入研究, 所有原始的LAPACK和BLAS库都可以直接使用, 这里我们只谈一些更易于使用的接口.</p>
+<h3 id="scipy-linalg-vs-numpy-linalg"><a href="#scipy-linalg-vs-numpy-linalg" class="headerlink" title="scipy.linalg vs numpy.linalg"></a>scipy.linalg vs numpy.linalg</h3><p>scipy.linalg 包含所有 numpy.linalg 的功能, 并在此基础上有所扩展.<br>在 numpy 中进行线性代数操作得到的结果为 matrix类, 虽然 matrix类 简化了一些线代操作, 但所有的操作也可以使用 2-D ndarry 实现, 而且在实际操作中也容易混淆 matrix类 和 ndarry类. 而使用 scipy.linalg 可以同时应用于 matrix类 和 2-D ndarry 类.</p>
+<h3 id="线代基础操作"><a href="#线代基础操作" class="headerlink" title="线代基础操作"></a>线代基础操作</h3><h4 id="求矩阵的逆"><a href="#求矩阵的逆" class="headerlink" title="求矩阵的逆"></a>求矩阵的逆</h4><blockquote>
+<p><a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.inv.html" target="_blank" rel="noopener">scipy.linalg.inv(a)</a></p>
+</blockquote>
+<p>例如:</p>
+<pre><code class="lang-python">&gt;&gt;&gt; import numpy as np
+&gt;&gt;&gt; from scipy import linalg
+&gt;&gt;&gt; a = np.array([[1.,2.], [3.,4.]])
+&gt;&gt;&gt; a
+array([[1., 2.],
+       [3., 4.]])
+&gt;&gt;&gt; linalg.inv(a)
+array([[-2. ,  1. ],
+       [ 1.5, -0.5]])
+&gt;&gt;&gt; a.dot(linalg.inv(a))
+array([[1.0000000e+00, 0.0000000e+00],
+       [8.8817842e-16, 1.0000000e+00]])
+</code></pre>
+<h4 id="解线性方程组"><a href="#解线性方程组" class="headerlink" title="解线性方程组"></a>解线性方程组</h4><script type="math/tex; mode=display">\begin{cases} x + 3y + 5z = 10 \\\\ 2x + 5y + z = 8 \\\\ 2x + 3y + 8z = 3 \\\\ \end{cases}</script><p>该方程组可以转换为矩阵:</p>
+<script type="math/tex; mode=display">\begin{bmatrix} 1 & 3 & 5\\\\ 2 & 5 & 1 \\\\ 2 & 3 & 8 \end{bmatrix} \begin{bmatrix} x \\\\ y \\\\ z \end{bmatrix} = \begin{bmatrix} 10 \\\\ 8 \\\\ 3 \end{bmatrix}</script><p>即可以得出:</p>
+<script type="math/tex; mode=display">\begin{bmatrix} x \\\\ y \\\\ z \end{bmatrix} = \begin{bmatrix} 1 & 3 & 5\\\\ 2 & 5 & 1 \\\\ 2 & 3 & 8 \end{bmatrix}^{-1}  \begin{bmatrix} 10 \\\\ 8 \\\\ 3 \end{bmatrix}</script><p>当使用 scipy.linalg 时, 就可以使计算变得非常简单.</p>
+<pre><code class="lang-python">&gt;&gt;&gt; import numpy as np
+&gt;&gt;&gt; from scipy import linalg
+&gt;&gt;&gt; a = np.array([[1,3,5], [2,5,1],[2,3,8]])
+&gt;&gt;&gt; a
+array([[1, 3, 5],
+       [2, 5, 1],
+       [2, 3, 8]])
+&gt;&gt;&gt; b = np.array([[10], [8], [3]])
+&gt;&gt;&gt; b
+array([[10],
+       [ 8],
+       [ 3]])
+&gt;&gt;&gt; linalg.inv(a).dot(b)  # 计算结果
+array([[-9.28],
+       [ 5.16],
+       [ 0.76]])
+&gt;&gt;&gt; a.dot(linalg.inv(a).dot(b))  # 检验结果
+array([[10.],
+       [ 8.],
+       [ 3.]])
+</code></pre>
+<h4 id="计算行列式的值"><a href="#计算行列式的值" class="headerlink" title="计算行列式的值"></a>计算行列式的值</h4><blockquote>
+<p><a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.det.html" target="_blank" rel="noopener">scipy.linalg.det(a)</a></p>
+</blockquote>
+<p>给定一个矩阵:</p>
+<script type="math/tex; mode=display">A = \begin{bmatrix} 1 & 2 \\\\ 3 & 4 \end{bmatrix}</script><p>计算它的行列式:</p>
+<script type="math/tex; mode=display">\mid A \mid  = \begin{vmatrix} 1 & 2 \\\\ 3 & 4 \end{vmatrix} = 1 \times 4 - 2 \times 3 = -2</script><p>用 scipy.linalg.det() 函数计算矩阵的行列式:</p>
+<pre><code class="lang-python">&gt;&gt;&gt; import numpy as np
+&gt;&gt;&gt; from scipy import linalg
+&gt;&gt;&gt; A = np.array([[1,2], [3,4]])
+&gt;&gt;&gt; A
+array([[1, 2],
+       [3, 4]])
+&gt;&gt;&gt; linalg.det(A)
+-2.0
+</code></pre>
+<h4 id="计算矩阵的伴随矩阵"><a href="#计算矩阵的伴随矩阵" class="headerlink" title="计算矩阵的伴随矩阵"></a>计算矩阵的伴随矩阵</h4><p>求矩阵的伴随矩阵, 我们可以使用以下公式, 设 A 是一个行列式不为0的方阵: </p>
+<script type="math/tex; mode=display">A^* = \mid A \mid A^{-1}</script><p>所以, 我们可以用 linalg.det(A).dot(linalg.inv(A)) 计算矩阵 A 的伴随矩阵. 很多矩阵的计算都可以用这种思路.</p>
+<h4 id="求矩阵的特征值和特征向量"><a href="#求矩阵的特征值和特征向量" class="headerlink" title="求矩阵的特征值和特征向量"></a>求矩阵的特征值和特征向量</h4><p>对于矩阵 A 若: $A \zeta = \lambda A$ , 则我们称 $\lambda$ 为 A 的特征值, $\zeta$ 为 A 的特征向量.</p>
+<blockquote>
+<p><a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.eig.html" target="_blank" rel="noopener">linalg.eig(A)</a>  会同时 return $\lambda$ 和 $\zeta$,<br><a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.eigvals.html" target="_blank" rel="noopener">linalg.eigvals(A)</a>  只会 return $\lambda$.</p>
+</blockquote>
+<p>例如:</p>
+<pre><code class="lang-python">&gt;&gt;&gt; import numpy as np
+&gt;&gt;&gt; from scipy import linalg
+&gt;&gt;&gt; A = np.array([[0,2,-2], [2,4,4], [-2,4,-3]])
+&gt;&gt;&gt; A
+array([[ 0,  2, -2],
+       [ 2,  4,  4],
+       [-2,  4, -3]])
+&gt;&gt;&gt;linalg.eigvals(A)
+array([-6.+0.j,  1.+0.j,  6.+0.j])
+&gt;&gt;&gt; linalg.eig(A)
+(array([-6.+0.j,  1.+0.j,  6.+0.j]),
+array([[-4.08248290e-01,  8.94427191e-01,  1.82574186e-01],
+       [ 4.08248290e-01,  9.87581947e-17,  9.12870929e-01],
+       [-8.16496581e-01, -4.47213595e-01,  3.65148372e-01]]))
+</code></pre>
+<h4 id="其他矩阵操作"><a href="#其他矩阵操作" class="headerlink" title="其他矩阵操作"></a>其他矩阵操作</h4><p>其他矩阵操作可以查看 <a href="https://docs.scipy.org/doc/scipy/reference/sparse.linalg.html" target="_blank" rel="noopener">官网关于linalg的文档</a>.</p>
+<h2 id="scipy-fftpack-快速傅里叶变换"><a href="#scipy-fftpack-快速傅里叶变换" class="headerlink" title="scipy.fftpack 快速傅里叶变换"></a>scipy.fftpack 快速傅里叶变换</h2><p>关于傅里叶变换, 可以参考这篇文章 <a href="https://www.matongxue.com/madocs/619.html" target="_blank" rel="noopener">如何理解傅立叶级数公式？</a></p>
+<p>scipy.fftpack 模块包含了快速傅里叶变换的功能.</p>
+<p>下面是一个噪声信号的例子:</p>
+<pre><code class="lang-python">import numpy as np
+
+time_step = 0.02
+period = 5.
+time_vec = np.arange(0, 20, time_step)
+sig = np.sin(2 * np.pi / period * time_vec) + 0.5 * np.random.randn(time_vec.size)
+</code></pre>
+<p>观察者不知道信号的频率, 只知道信号的采样间隙 sig 信号是来自真实函数的, 那么 傅里叶变换是对称的. <code>scipy.fftpack.fftfreq()</code> 函数会生成采样频率, <code>scipy.fftpack.fft()</code> 则用于进行快速傅里叶变化:</p>
+<pre><code class="lang-python">from scipy import fftpack
+
+sample_freq = fftpack.fftfreq(sig.size, d=time_step)
+sig_fft = fftpack.fft(sig)
+</code></pre>
+<p>因为生成的幂是对称的, 寻找频率只需要使用频谱为正的部分:</p>
+<pre><code class="lang-python">pidxs = np.where(sample_freq &gt; 0)
+freqs = sample_freq[pidxs]
+power = np.abs(sig_fft)[pidxs]
+</code></pre>
+<p>信号频率可通过如下方式获得:</p>
+<pre><code class="lang-python">freq = freqs[power.argmax()]
+</code></pre>
+<p>滤去傅里叶变化后的信号中的高频噪声:</p>
+<pre><code class="lang-python">sig_fft[np.abs(sample_freq) &gt; freq] = 0
+</code></pre>
+<p>去噪后信号可通过如下方式计算： scipy.fftpack.ifft() 方法:</p>
+<pre><code class="lang-python">main_sig = fftpack.ifft(sig_fft)
+</code></pre>
+<p>绘制成图:</p>
+<pre><code class="lang-python">import matplotlib.pyplot as plt
+
+plt.figure()
+plt.plot(time_vec, sig)
+plt.plot(time_vec, main_sig, linewidth=3)
+plt.xlabel(&#39;Time [s]&#39;)
+plt.ylabel(&#39;Amplitude&#39;)
+plt.show()
+</code></pre>
+<p><img src="/assets/blogImg/scipy/scipy01.png" alt="scipy01"></p>
+<h2 id="scipy-optimize-优化及拟合"><a href="#scipy-optimize-优化及拟合" class="headerlink" title="scipy.optimize 优化及拟合"></a>scipy.optimize 优化及拟合</h2><p>scipy.optimize 模块提供了求解函数最小值, 曲线拟合等算法的实现.</p>
+<h3 id="求函数的最小值"><a href="#求函数的最小值" class="headerlink" title="求函数的最小值"></a>求函数的最小值</h3><p>定义下面的函数:</p>
+<pre><code class="lang-python">def f(x):
+    return x**2 + 10*np.sin(x)
+</code></pre>
+<p>画出其图像:</p>
+<pre><code class="lang-python">x = np.arange(-10, 10, 0.1)
+plt.plot(x, f(x))
+plt.show()
+</code></pre>
+<p><img src="/assets/blogImg/scipy/scipy02.png" alt="scipy02"></p>
+<p>此函数有一个全局最小值, 在 x = -1 附近, 还有一个局部最小值, 在 x = 5 附近.</p>
+<p>一个常用的求解此函数最小值的方法是确定初始点, 然后执行梯度下降算法. BFGS算法是一个很好的适用于此的方法:</p>
+<pre><code class="lang-python">&gt;&gt;&gt; optimize.fmin_bfgs(f, -1)
+Optimization terminated successfully.
+         Current function value: -7.945823
+         Iterations: 3
+         Function evaluations: 15
+         Gradient evaluations: 5
+array([-1.30644012])
+</code></pre>
+<p>这个方法的缺陷在于有时候可能会被困在一个局部最小值, 而得不到全局的最小值. 这取决与初始点的选取:</p>
+<pre><code class="lang-python">&gt;&gt;&gt; optimize.fmin_bfgs(f, 5)
+optimize.fmin_bfgs(f, 5)
+Optimization terminated successfully.
+         Current function value: 8.315586
+         Iterations: 5
+         Function evaluations: 18
+         Gradient evaluations: 6
+array([3.83746712])
+</code></pre>
+<p>如果我们不知道全局最小值的邻近数值, 就需要使用那些可以实现全局最优化的算法.比如 optimize.basinhopping() 包含一个求解局部最小值的算法和一个为该算法提供随机初始点的函数:</p>
+<pre><code class="lang-python">&gt;&gt;&gt; optimize.basinhopping(f, 0)
+                        fun: -7.945823375615284
+ lowest_optimization_result:       fun: -7.945823375615284
+ hess_inv: array([[0.08579758]])
+      jac: array([0.])
+  message: &#39;Optimization terminated successfully.&#39;
+     nfev: 15
+      nit: 3
+     njev: 5
+   status: 0
+  success: True
+        x: array([-1.30644002])
+                    message: [&#39;requested number of basinhopping iterations completed successfully&#39;]
+      minimization_failures: 0
+                       nfev: 1497
+                        nit: 100
+                       njev: 499
+                          x: array([-1.30644002])
+</code></pre>
+<p>另外一个可用的, 但不怎么高效的全局最优化算法是 scipy.optimize.brute().</p>
+<p>为了找到局部最小值, 可以把变量限制在区间 (0, 10) 中, 使用 scipy.optimize.fminbound():</p>
+<pre><code class="lang-python">&gt;&gt;&gt; optimize.fminbound(f, 0, 10)
+3.8374671194983834
+</code></pre>
+<h3 id="寻找函数的零点"><a href="#寻找函数的零点" class="headerlink" title="寻找函数的零点"></a>寻找函数的零点</h3><p>例如, 求解 f(x) = 0 的零点, 其中 f 是我们在上面用到的函数. 可以使用 scipy.optimize.fsolve():</p>
+<pre><code class="lang-python">&gt;&gt;&gt; optimize.fsolve(f, 1)
+array([0.])
+</code></pre>
+<p>从上面的图像中我们可以看出函数 f 包含两个零点. 第二个零点在 x = -2.5 附近. 通过调整初始值, 我们可以找出精确解:</p>
+<pre><code class="lang-python">&gt;&gt;&gt; optimize.fsolve(f, -2.5)
+array([-2.47948183])
+</code></pre>
+<h3 id="曲线拟合"><a href="#曲线拟合" class="headerlink" title="曲线拟合"></a>曲线拟合</h3><p>假设我们现在有从函数 f 中采样得到的含有一些噪声的数据:</p>
+<pre><code class="lang-python">xdata = np.arange(-10, 10)
+ydata = f(xdata) + np.random.randn(xdata.size)
+</code></pre>
+<p>我们已经知道了函数的形式是大概是:</p>
+<script type="math/tex; mode=display">ax^2 + b \sin(x) + c</script><p>但不知道每一项系数的大小. 我们可以使用最小二乘算法来进行曲线拟合得到系数的值. 首先定义需要进行拟合的函数:</p>
+<pre><code class="lang-python">def f2(x, a, b, c):
+     return a*x**2 + b*np.sin(x) + c
+</code></pre>
+<p>接着使用 scipy.optimize.curve_fit() 来求解 a, b, c:</p>
+<pre><code class="lang-python">&gt;&gt;&gt; params, params_covariance = optimize.curve_fit(f2, xdata, ydata, guess)
+&gt;&gt;&gt;params
+array([ 0.98955234, 10.0579609 ,  0.15395008])
+</code></pre>
+<p>现在我们已经找到了函数 f 的最小值和零点, 并且对采自这个函数的数据进行了曲线拟合的实验. 我们可以把所有的结果呈现在同一张图像上: </p>
+<pre><code class="lang-python">fig, ax = plt.subplots()
+plt.rcParams[&#39;axes.unicode_minus&#39;]=False  # 解决负号乱码问题
+ax.plot(x, f(x), &#39;b-&#39;, label=&quot;f(x)&quot;)
+ax.plot(x, f2(x, *params), &#39;r--&#39;, label=&quot;拟合结果&quot;, )
+xmins = np.array([optimize.fmin_bfgs(f, -1), optimize.fmin_bfgs(f, 5)])
+ax.plot(xmins, f(xmins), &#39;go&#39;, label=&quot;极小值&quot;)
+roots = np.array([optimize.fsolve(f, 1), optimize.fsolve(f, -2.5)])
+ax.plot(roots, f(roots), &#39;kv&#39;, label=&quot;零点&quot;)
+ax.legend(prop={&#39;family&#39; : &#39;STSong&#39;, &#39;size&#39; : 10})
+ax.set_xlabel(&#39;x&#39;)
+ax.set_ylabel(&#39;f(x)&#39;)
+</code></pre>
+<p><img src="/assets/blogImg/scipy/scipy03.png" alt="scipy03"></p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p><em>1. <a href="https://docs.scipy.org/doc/scipy/reference/index.html" target="_blank" rel="noopener">SciPy &mdash; SciPy v1.4.1 Reference Guide</a></em><br><em>2. <a href="https://hal.inria.fr/hal-01206546" target="_blank" rel="noopener">Varoquaux, Gaël, et al. Scipy Lecture Notes. 2015.</a></em></p>
+</div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:baoju_liu@foxmial.com">zzZ5</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://zzz5.xyz/2020/05/30/python/scipy/python-scipy-01/">https://zzz5.xyz/2020/05/30/python/scipy/python-scipy-01/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://zzZ5.xyz" target="_blank">zzZ5的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/python/">python</a><a class="post-meta__tags" href="/tags/scipy/">scipy</a></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2020/06/25/mUeOJrx2jIaTbM3.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"/><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><div class="post-reward"><button class="reward-button"><i class="fas fa-qrcode"></i> 打赏<div class="reward-main"><ul class="reward-all"><li class="reward-item"><img class="post-qr-code__img" src="/assets/img/wechat.png" alt="wechat" onclick="window.open('/assets/img/wechat.png')"/><div class="post-qr-code__desc">wechat</div></li><li class="reward-item"><img class="post-qr-code__img" src="/assets/img/alipay.png" alt="alipay" onclick="window.open('/assets/img/alipay.png')"/><div class="post-qr-code__desc">alipay</div></li></ul></div></button></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/06/04/python/scipy/python-scipy-02/"><img class="prev-cover" src="https://i.loli.net/2020/06/03/ZURzMa91AltTmEd.png" onerror="onerror=null;src='/assets/blogImg/404.jpg'"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Python之Scipy库学习(2)</div></div></a></div><div class="next-post pull-right"><a href="/2020/05/28/python/others/python-designPatterns-01/"><img class="next-cover" src="https://i.loli.net/2020/06/03/nW8IErMBCD7Y5U2.png" onerror="onerror=null;src='/assets/blogImg/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Python设计模式(1)</div></div></a></div></nav><div class="relatedPosts"><div class="relatedPosts_headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts_list"><div class="relatedPosts_item"><a href="/2020/06/04/python/scipy/python-scipy-02/" title="Python之Scipy库学习(2)"><img class="relatedPosts_cover" src="https://i.loli.net/2020/06/03/ZURzMa91AltTmEd.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2020-06-04</div><div class="relatedPosts_title">Python之Scipy库学习(2)</div></div></a></div><div class="relatedPosts_item"><a href="/2020/01/01/python/matplotlib/python-matplotlib-tips/" title="Python之Matplotlib库学习细节补充"><img class="relatedPosts_cover" src="https://i.loli.net/2020/06/03/1Go9cC6Y3b2Vdif.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2020-01-01</div><div class="relatedPosts_title">Python之Matplotlib库学习细节补充</div></div></a></div><div class="relatedPosts_item"><a href="/2020/01/01/python/matplotlib/python-matplotlib-03/" title="Python之Matplotlib库学习(3)"><img class="relatedPosts_cover" src="https://i.loli.net/2020/06/03/1Go9cC6Y3b2Vdif.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2020-01-01</div><div class="relatedPosts_title">Python之Matplotlib库学习(3)</div></div></a></div><div class="relatedPosts_item"><a href="/2019/04/25/python/matplotlib/python-matplotlib-02/" title="Python之Matplotlib库学习(2)"><img class="relatedPosts_cover" src="https://i.loli.net/2020/06/03/1Go9cC6Y3b2Vdif.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2019-04-25</div><div class="relatedPosts_title">Python之Matplotlib库学习(2)</div></div></a></div><div class="relatedPosts_item"><a href="/2019/04/20/python/numpy/python-numpy-01/" title="Python之Numpy库学习(1)"><img class="relatedPosts_cover" src="https://i.loli.net/2020/06/03/3oDhEKIPwq8cHvy.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2019-04-20</div><div class="relatedPosts_title">Python之Numpy库学习(1)</div></div></a></div><div class="relatedPosts_item"><a href="/2019/04/21/python/numpy/python-numpy-02/" title="Python之Numpy库学习(2)"><img class="relatedPosts_cover" src="https://i.loli.net/2020/06/03/3oDhEKIPwq8cHvy.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2019-04-21</div><div class="relatedPosts_title">Python之Numpy库学习(2)</div></div></a></div></div></div><hr><div id="post-comment"><div class="comment_headling"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div class="vcomment" id="vcomment"></div><script src="https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js"></script><script>var requestSetting = function (from,set) {
+  var from = from
+  var setting = set.split(',').filter(function(item){
+  return from.indexOf(item) > -1
+  });
+  setting = setting.length == 0 ? from :setting;
+  return setting
+}
+
+var guestInfo = requestSetting(['nick','mail','link'],'nick,mail,link')
+var requiredFields = requestSetting(['nick','mail'],'nick,mail')
+
+window.valine = new Valine({
+  el:'#vcomment',
+  appId: 'wugk9aIpc580sE0GdxsCb7LL-MdYXbMMI',
+  appKey: 'WmxJKdt4J543WQWOM9X0Usyt',
+  placeholder: '记得留下你的昵称和邮箱...应该会快速收到回复',
+  avatar: 'monsterid',
+  meta: guestInfo,
+  pageSize: '10',
+  lang: 'zh-CN',
+  recordIP: true,
+  serverURLs: '',
+  emojiCDN: '',
+  emojiMaps: "",
+  enableQQ: false,
+  requiredFields: requiredFields
+});</script></div></article></main><footer id="footer" style="background-image: url(https://i.loli.net/2020/06/03/ZURzMa91AltTmEd.png)" data-type="photo"><div id="footer-wrap"><div class="copyright">&copy;2020 By zzZ5</div><div class="framework-info"><span>驱动 </span><a href="https://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener"><span>Butterfly</span></a></div><div class="footer_custom_text">Hi, welcome to my <a href="https://zzZ5.xyz/">blog</a>!</div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><button id="readmode" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font_plus" title="放大字体"><i class="fas fa-plus"></i></button><button id="font_minus" title="缩小字体"><i class="fas fa-minus"></i></button><button class="translate_chn_to_cht" id="translateLink" title="简繁转换">繁</button><button id="darkmode" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" title="设置"><i class="fas fa-cog"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="scroll_to_comment fas fa-comments"></i></a><button class="close" id="mobile-toc-button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="noopener" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div class="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  CommonHTML: {
+    linebreaks: { automatic: true, width: "90% container" }
+  },
+  "HTML-CSS": { 
+    linebreaks: { automatic: true, width: "90% container" }
+  },
+  "SVG": { 
+    linebreaks: { automatic: true, width: "90% container" }
+  }
+});
+</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
+  var all = MathJax.Hub.getAllJax(), i;
+  for (i=0; i < all.length; i += 1) {
+    all[i].SourceElement().parentNode.className += ' has-jax';
+  }
+});
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script id="canvas_nest" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="/js/third-party/canvas-nest.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script src="/js/third-party/click_heart.js"></script><script src="/js/search/local-search.js"></script></body></html>
