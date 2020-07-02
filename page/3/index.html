@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>zzZ5的博客 - 多说无益</title><meta name="description" content="闲来无事"><meta name="keywords" content="后端, python, numpy, matplotlib, pandas, 爬虫, 程序猿, 程序媛, 编程, 代码, 开源"><meta name="author" content="zzZ5,baoju_liu@foxmial.com"><meta name="copyright" content="zzZ5"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/assets/img/zzz5.ico"><link rel="canonical" href="https://zzz5.xyz/page/3/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//ta.qq.com"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta property="og:type" content="website"><meta property="og:title" content="zzZ5的博客"><meta property="og:url" content="https://zzz5.xyz/page/3/"><meta property="og:site_name" content="zzZ5的博客"><meta property="og:description" content="闲来无事"><meta property="og:image" content="https://i.loli.net/2020/06/03/OFvA9uNmodI8tki.png"><meta property="article:published_time" content="2020-07-02T11:52:56.783Z"><meta property="article:modified_time" content="2020-07-02T11:52:56.783Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>zzZ5的博客 - 多说无益</title><meta name="description" content="闲来无事"><meta name="keywords" content="后端, python, numpy, matplotlib, pandas, 爬虫, 程序猿, 程序媛, 编程, 代码, 开源"><meta name="author" content="zzZ5,baoju_liu@foxmial.com"><meta name="copyright" content="zzZ5"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/assets/img/zzz5.ico"><link rel="canonical" href="https://zzz5.xyz/page/3/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//ta.qq.com"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta property="og:type" content="website"><meta property="og:title" content="zzZ5的博客"><meta property="og:url" content="https://zzz5.xyz/page/3/"><meta property="og:site_name" content="zzZ5的博客"><meta property="og:description" content="闲来无事"><meta property="og:image" content="https://i.loli.net/2020/06/03/OFvA9uNmodI8tki.png"><meta property="article:published_time" content="2020-07-02T11:58:39.697Z"><meta property="article:modified_time" content="2020-07-02T11:58:39.697Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
   document.documentElement.setAttribute('data-theme', 'dark')
   if (document.querySelector('meta[name="theme-color"]') !== null) {
     document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
@@ -131,15 +131,25 @@ plt.ylabel(ylabel)
       theme: 'default',
   })
 })
-}</script><script src="https://cdn.jsdelivr.net/npm/typed.js"></script><script>var subtitleEffect = true
-if (subtitleEffect) { 
-  var typed = new Typed("#subtitle", {
-    strings: "学无止境,Knowledge has no limit limit".split(","),
-    startDelay: 300,
-    typeSpeed: 150,
-    loop: true,
-    backSpeed: 50
+}</script><script src="https://cdn.jsdelivr.net/npm/typed.js"></script><script>var subtitleType = function () {
+  loadScript('http://yijuzhan.com/api/word.php?m=js', function () {
+    var subtitleEffect = true
+    var con = str[0]
+    if (subtitleEffect) {
+      var from = '出自 ' + str[1]
+      var sub = "学无止境,Knowledge has no limit limit".length == 0 ? new Array() : "学无止境,Knowledge has no limit limit".split(',')
+      var both = sub.unshift(con, from)
+      var typed = new Typed('#subtitle', {
+        strings: sub,
+        startDelay: 300,
+        typeSpeed: 150,
+        loop: true,
+        backSpeed: 50,
+      })
+    } else {
+      document.getElementById('subtitle').innerHTML = con
+    }
   })
-} else {
-  document.getElementById("subtitle").innerHTML = '学无止境'
-}</script></body></html>
+}
+window.addEventListener('load', subtitleType)
+</script></body></html>
