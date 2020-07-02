@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://zzz5.xyz/music/index.html</loc>
+    
+    <lastmod>2020-07-02T12:37:35.783Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://zzz5.xyz/2020/06/25/others/graphviz/</loc>
     
     <lastmod>2020-07-02T11:25:38.291Z</lastmod>
@@ -33,13 +40,6 @@
     <loc>https://zzz5.xyz/photo/index.html</loc>
     
     <lastmod>2020-06-27T14:46:09.656Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zzz5.xyz/music/index.html</loc>
-    
-    <lastmod>2020-06-27T14:46:09.655Z</lastmod>
     
   </url>
   
@@ -107,13 +107,6 @@
   </url>
   
   <url>
-    <loc>https://zzz5.xyz/2019/05/11/python/rules/python-rules-language/</loc>
-    
-    <lastmod>2020-06-27T14:46:09.531Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://zzz5.xyz/2019/05/11/python/rules/python-rules-style/</loc>
     
     <lastmod>2020-06-27T14:46:09.531Z</lastmod>
@@ -121,14 +114,21 @@
   </url>
   
   <url>
-    <loc>https://zzz5.xyz/2019/05/09/python/rules/python-rule-tips/</loc>
+    <loc>https://zzz5.xyz/2019/05/11/python/rules/python-rules-language/</loc>
+    
+    <lastmod>2020-06-27T14:46:09.531Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/2019/07/31/python/rules/python-rule-structure/</loc>
     
     <lastmod>2020-06-27T14:46:09.529Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://zzz5.xyz/2019/07/31/python/rules/python-rule-structure/</loc>
+    <loc>https://zzz5.xyz/2019/05/09/python/rules/python-rule-tips/</loc>
     
     <lastmod>2020-06-27T14:46:09.529Z</lastmod>
     
@@ -191,14 +191,14 @@
   </url>
   
   <url>
-    <loc>https://zzz5.xyz/2019/04/23/python/numpy/python-numpy-04/</loc>
+    <loc>https://zzz5.xyz/2019/04/22/python/numpy/python-numpy-03/</loc>
     
     <lastmod>2020-06-27T14:46:09.519Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://zzz5.xyz/2019/04/22/python/numpy/python-numpy-03/</loc>
+    <loc>https://zzz5.xyz/2019/04/23/python/numpy/python-numpy-04/</loc>
     
     <lastmod>2020-06-27T14:46:09.519Z</lastmod>
     
@@ -233,14 +233,14 @@
   </url>
   
   <url>
-    <loc>https://zzz5.xyz/2019/04/25/python/matplotlib/python-matplotlib-02/</loc>
+    <loc>https://zzz5.xyz/2019/04/24/python/matplotlib/python-matplotlib-01/</loc>
     
     <lastmod>2020-06-27T14:46:09.513Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://zzz5.xyz/2019/04/24/python/matplotlib/python-matplotlib-01/</loc>
+    <loc>https://zzz5.xyz/2019/04/25/python/matplotlib/python-matplotlib-02/</loc>
     
     <lastmod>2020-06-27T14:46:09.513Z</lastmod>
     
