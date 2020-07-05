@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zzz5.xyz/"/>
-  <updated>2020-07-02T10:39:56.598Z</updated>
+  <updated>2020-07-05T14:46:10.585Z</updated>
   <id>https://zzz5.xyz/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://zzz5.xyz/2020/06/30/python/scikit-learn/sklearn-decision%20tree/"/>
     <id>https://zzz5.xyz/2020/06/30/python/scikit-learn/sklearn-decision%20tree/</id>
     <published>2020-06-30T03:01:00.000Z</published>
-    <updated>2020-07-02T10:39:56.598Z</updated>
+    <updated>2020-07-05T14:46:10.585Z</updated>
     
     <content type="html"><![CDATA[<h2 id="什么是决策树"><a href="#什么是决策树" class="headerlink" title="什么是决策树?"></a>什么是决策树?</h2><p>决策树(Decision Trees)一般都是自上而下的来生成的. 每个决策或事件(即自然状态)都可能引出两个或多个事件, 导致不同的结果, 把这种决策分支画成图形很像一棵树的枝干, 故称决策树. </p><p>决策树是一种用来分类和回归的无参监督学习方法, 其目的是创建一种模型从数据特征中学习简单的决策规则来预测一个目标变量的值.</p><h2 id="决策树的优缺点"><a href="#决策树的优缺点" class="headerlink" title="决策树的优缺点"></a>决策树的优缺点</h2><blockquote><p>暂时先停一下，正在学习其他技能</p></blockquote><h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p><em>1. <a href="https://scikit-learn.org/stable/modules/tree.html" target="_blank" rel="noopener">1.10. Decision Trees &mdash; scikit-learn 0.23.1 documentation</a></em><br><em>2. <a href="https://wiki.mbalib.com/wiki/%E5%86%B3%E7%AD%96%E6%A0%91" target="_blank" rel="noopener">决策树 - MBA智库百科</a></em><br><em>3. <a href="https://www.cnblogs.com/pinard/p/6056319.html" target="_blank" rel="noopener">scikit-learn决策树算法类库使用小结 - 刘建平Pinard - 博客园</a></em></p>]]></content>
     
