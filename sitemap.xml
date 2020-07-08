@@ -2,16 +2,121 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://zzz5.xyz/2020/07/08/python/scikit-learn/sklearn-dimension%20reduction/</loc>
+    
+    <lastmod>2020-07-08T05:36:06.600Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/2019/04/23/python/numpy/python-numpy-04/</loc>
+    
+    <lastmod>2020-07-07T14:38:25.101Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/2019/04/22/python/numpy/python-numpy-03/</loc>
+    
+    <lastmod>2020-07-07T14:38:20.547Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/2019/04/21/python/numpy/python-numpy-02/</loc>
+    
+    <lastmod>2020-07-07T14:38:15.712Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/2019/04/20/python/numpy/python-numpy-01/</loc>
+    
+    <lastmod>2020-07-07T14:38:11.402Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/2019/04/26/python/pandas/python-pandas-01/</loc>
+    
+    <lastmod>2020-07-07T14:36:04.286Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/2019/04/27/python/pandas/python-pandas-02/</loc>
+    
+    <lastmod>2020-07-07T14:35:41.323Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://zzz5.xyz/2020/06/30/python/scikit-learn/sklearn-decision%20tree/</loc>
     
-    <lastmod>2020-07-07T09:24:53.012Z</lastmod>
+    <lastmod>2020-07-07T14:33:00.419Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/2020/06/25/others/graphviz/</loc>
+    
+    <lastmod>2020-07-07T14:30:43.476Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/2020/05/30/python/scipy/python-scipy-01/</loc>
+    
+    <lastmod>2020-07-07T14:27:13.614Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/2020/06/04/python/scipy/python-scipy-02/</loc>
+    
+    <lastmod>2020-07-07T14:27:11.416Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/2020/01/01/python/matplotlib/python-matplotlib-03/</loc>
+    
+    <lastmod>2020-07-07T14:23:14.375Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/2020/01/01/python/matplotlib/python-matplotlib-tips/</loc>
+    
+    <lastmod>2020-07-07T14:23:14.375Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/2019/04/24/python/matplotlib/python-matplotlib-01/</loc>
+    
+    <lastmod>2020-07-07T14:23:14.375Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/2019/04/25/python/matplotlib/python-matplotlib-02/</loc>
+    
+    <lastmod>2020-07-07T14:23:14.375Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/2020/05/28/python/others/python-designPatterns-01/</loc>
+    
+    <lastmod>2020-07-07T14:08:06.546Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://zzz5.xyz/2019/07/14/web/others/escape%20charcater/</loc>
     
-    <lastmod>2020-07-02T13:39:27.062Z</lastmod>
+    <lastmod>2020-07-02T13:39:35.070Z</lastmod>
     
   </url>
   
@@ -44,20 +149,6 @@
   </url>
   
   <url>
-    <loc>https://zzz5.xyz/2020/06/04/python/scipy/python-scipy-02/</loc>
-    
-    <lastmod>2020-07-02T13:29:08.642Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zzz5.xyz/2020/05/30/python/scipy/python-scipy-01/</loc>
-    
-    <lastmod>2020-07-02T13:27:37.903Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://zzz5.xyz/2019/05/11/python/rules/python-rules-language/</loc>
     
     <lastmod>2020-07-02T13:25:14.883Z</lastmod>
@@ -82,20 +173,6 @@
     <loc>https://zzz5.xyz/2019/07/31/python/rules/python-rule-structure/</loc>
     
     <lastmod>2020-07-02T13:22:37.165Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zzz5.xyz/2019/04/27/python/pandas/python-pandas-02/</loc>
-    
-    <lastmod>2020-07-02T13:21:20.832Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zzz5.xyz/2019/04/26/python/pandas/python-pandas-01/</loc>
-    
-    <lastmod>2020-07-02T13:21:15.394Z</lastmod>
     
   </url>
   
@@ -135,37 +212,9 @@
   </url>
   
   <url>
-    <loc>https://zzz5.xyz/2020/05/28/python/others/python-designPatterns-01/</loc>
-    
-    <lastmod>2020-07-02T13:15:22.610Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zzz5.xyz/2019/04/24/python/matplotlib/python-matplotlib-01/</loc>
-    
-    <lastmod>2020-07-02T13:13:50.100Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zzz5.xyz/2019/04/23/python/numpy/python-numpy-04/</loc>
-    
-    <lastmod>2020-07-02T13:13:25.956Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://zzz5.xyz/2019/05/03/python/crawler/crawler-02/</loc>
     
     <lastmod>2020-07-02T13:13:10.486Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zzz5.xyz/2019/04/21/python/numpy/python-numpy-02/</loc>
-    
-    <lastmod>2020-07-02T13:13:06.531Z</lastmod>
     
   </url>
   
@@ -184,51 +233,9 @@
   </url>
   
   <url>
-    <loc>https://zzz5.xyz/2019/04/22/python/numpy/python-numpy-03/</loc>
-    
-    <lastmod>2020-07-02T13:12:58.083Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zzz5.xyz/2019/04/20/python/numpy/python-numpy-01/</loc>
-    
-    <lastmod>2020-07-02T13:12:09.819Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zzz5.xyz/2019/04/25/python/matplotlib/python-matplotlib-02/</loc>
-    
-    <lastmod>2020-07-02T13:05:49.405Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zzz5.xyz/2020/01/01/python/matplotlib/python-matplotlib-03/</loc>
-    
-    <lastmod>2020-07-02T13:05:29.515Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zzz5.xyz/2020/01/01/python/matplotlib/python-matplotlib-tips/</loc>
-    
-    <lastmod>2020-07-02T13:05:05.276Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://zzz5.xyz/music/index.html</loc>
     
     <lastmod>2020-07-02T12:37:35.783Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zzz5.xyz/2020/06/25/others/graphviz/</loc>
-    
-    <lastmod>2020-07-02T11:25:38.291Z</lastmod>
     
   </url>
   
