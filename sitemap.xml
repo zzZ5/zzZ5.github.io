@@ -2,9 +2,37 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://zzz5.xyz/2020/07/10/python/others/python-designPatterns-02/</loc>
+    
+    <lastmod>2020-07-10T12:54:01.543Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/2020/06/25/others/graphviz/</loc>
+    
+    <lastmod>2020-07-10T09:18:48.776Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/music/index.html</loc>
+    
+    <lastmod>2020-07-10T07:34:29.473Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/2020/05/28/python/others/python-designPatterns-01/</loc>
+    
+    <lastmod>2020-07-10T06:16:12.691Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://zzz5.xyz/2020/07/08/python/scikit-learn/sklearn-dimension%20reduction/</loc>
     
-    <lastmod>2020-07-09T09:52:38.491Z</lastmod>
+    <lastmod>2020-07-09T14:39:09.202Z</lastmod>
     
   </url>
   
@@ -58,13 +86,6 @@
   </url>
   
   <url>
-    <loc>https://zzz5.xyz/2020/06/25/others/graphviz/</loc>
-    
-    <lastmod>2020-07-07T14:30:43.476Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://zzz5.xyz/2020/05/30/python/scipy/python-scipy-01/</loc>
     
     <lastmod>2020-07-07T14:27:13.614Z</lastmod>
@@ -103,13 +124,6 @@
     <loc>https://zzz5.xyz/2019/04/25/python/matplotlib/python-matplotlib-02/</loc>
     
     <lastmod>2020-07-07T14:23:14.375Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zzz5.xyz/2020/05/28/python/others/python-designPatterns-01/</loc>
-    
-    <lastmod>2020-07-07T14:08:06.546Z</lastmod>
     
   </url>
   
@@ -229,13 +243,6 @@
     <loc>https://zzz5.xyz/2019/05/02/python/crawler/crawler-01/</loc>
     
     <lastmod>2020-07-02T13:13:01.793Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zzz5.xyz/music/index.html</loc>
-    
-    <lastmod>2020-07-02T12:37:35.783Z</lastmod>
     
   </url>
   
