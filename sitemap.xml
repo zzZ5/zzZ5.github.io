@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://zzz5.xyz/2020/07/21/web/others/django/</loc>
+    
+    <lastmod>2020-07-21T04:43:11.746Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/2020/06/30/python/scikit-learn/sklearn-decision%20tree/</loc>
+    
+    <lastmod>2020-07-21T04:31:48.581Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/2020/07/08/python/scikit-learn/sklearn-dimension%20reduction/</loc>
+    
+    <lastmod>2020-07-21T04:31:36.652Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://zzz5.xyz/2020/07/10/python/others/python-designPatterns-02/</loc>
     
     <lastmod>2020-07-15T04:45:15.014Z</lastmod>
@@ -44,23 +65,9 @@
   </url>
   
   <url>
-    <loc>https://zzz5.xyz/2020/07/08/python/scikit-learn/sklearn-dimension%20reduction/</loc>
-    
-    <lastmod>2020-07-09T14:39:09.202Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://zzz5.xyz/2019/04/23/python/numpy/python-numpy-04/</loc>
     
     <lastmod>2020-07-09T02:26:09.650Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zzz5.xyz/2020/06/30/python/scikit-learn/sklearn-decision%20tree/</loc>
-    
-    <lastmod>2020-07-08T05:40:09.592Z</lastmod>
     
   </url>
   
