@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://zzz5.xyz/2020/11/04/web/django/django-nginx/</loc>
+    
+    <lastmod>2020-11-04T09:33:29.085Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/2019/07/12/web/django/django-apache/</loc>
+    
+    <lastmod>2020-11-04T08:13:11.727Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/2020/07/25/python/seaborn/python-seaborn/</loc>
+    
+    <lastmod>2020-10-25T13:10:00.435Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://zzz5.xyz/2020/10/13/python/matplotlib/python-matplotlib-nested%20pie%20chart/</loc>
     
     <lastmod>2020-10-15T15:54:13.634Z</lastmod>
@@ -9,23 +30,9 @@
   </url>
   
   <url>
-    <loc>https://zzz5.xyz/2020/07/25/python/seaborn/python-seaborn/</loc>
-    
-    <lastmod>2020-09-17T12:30:05.220Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://zzz5.xyz/2020/07/21/web/django/django-blog/</loc>
     
     <lastmod>2020-07-29T08:23:35.015Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zzz5.xyz/2019/07/12/web/django/django-apache/</loc>
-    
-    <lastmod>2020-07-23T03:46:00.399Z</lastmod>
     
   </url>
   
