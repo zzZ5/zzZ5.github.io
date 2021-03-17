@@ -361,13 +361,6 @@
   </url>
   
   <url>
-    <loc>https://zzz5.xyz/tags/Graphviz/</loc>
-    <lastmod>2021-03-17</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://zzz5.xyz/tags/lot/</loc>
     <lastmod>2021-03-17</lastmod>
     <changefreq>daily</changefreq>
@@ -376,6 +369,13 @@
   
   <url>
     <loc>https://zzz5.xyz/tags/mosqitto/</loc>
+    <lastmod>2021-03-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/tags/Graphviz/</loc>
     <lastmod>2021-03-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -424,13 +424,6 @@
   </url>
   
   <url>
-    <loc>https://zzz5.xyz/tags/pandas/</loc>
-    <lastmod>2021-03-17</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://zzz5.xyz/tags/re/</loc>
     <lastmod>2021-03-17</lastmod>
     <changefreq>daily</changefreq>
@@ -446,6 +439,13 @@
   
   <url>
     <loc>https://zzz5.xyz/tags/scrapy/</loc>
+    <lastmod>2021-03-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/tags/pandas/</loc>
     <lastmod>2021-03-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -510,14 +510,14 @@
   </url>
   
   <url>
-    <loc>https://zzz5.xyz/categories/%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB/</loc>
+    <loc>https://zzz5.xyz/categories/%E7%89%A9%E8%81%94%E7%BD%91/</loc>
     <lastmod>2021-03-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://zzz5.xyz/categories/%E7%89%A9%E8%81%94%E7%BD%91/</loc>
+    <loc>https://zzz5.xyz/categories/%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB/</loc>
     <lastmod>2021-03-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
