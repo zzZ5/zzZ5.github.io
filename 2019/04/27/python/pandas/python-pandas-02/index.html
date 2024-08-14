@@ -1,0 +1,360 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Python之Pandas库学习(2) | zzZ5的博客</title><meta name="author" content="zzZ5"><meta name="copyright" content="zzZ5"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="pandas库数据的排序和统计分析.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python之Pandas库学习(2)">
+<meta property="og:url" content="https://zzz5.xyz/2019/04/27/python/pandas/python-pandas-02/index.html">
+<meta property="og:site_name" content="zzZ5的博客">
+<meta property="og:description" content="pandas库数据的排序和统计分析.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2020/07/07/Xcm9tOjeH1D5bkY.png">
+<meta property="article:published_time" content="2019-04-27T01:46:00.000Z">
+<meta property="article:modified_time" content="2020-07-07T14:35:42.000Z">
+<meta property="article:author" content="zzZ5">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="pandas">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2020/07/07/Xcm9tOjeH1D5bkY.png"><link rel="shortcut icon" href="/assets/img/zzz5.ico"><link rel="canonical" href="https://zzz5.xyz/2019/04/27/python/pandas/python-pandas-02/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-RHY2S6DLG5"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-RHY2S6DLG5');
+</script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Python之Pandas库学习(2)',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2020-07-07 22:35:42'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="zzZ5的博客" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2020/06/03/OFvA9uNmodI8tki.png" onerror="onerror=null;src='/assets/blogImg/404.jpg'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">44</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">22</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-list"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/photo/"><i class="fa-fw far fa-image"></i><span> Photo</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/animate/"><i class="fa-fw fab fa-youtube"></i><span> Animate</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw far fa-comments"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://i.loli.net/2020/07/07/Xcm9tOjeH1D5bkY.png')"><nav id="nav"><span id="blog-info"><a href="/" title="zzZ5的博客"><span class="site-name">zzZ5的博客</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-list"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/photo/"><i class="fa-fw far fa-image"></i><span> Photo</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/animate/"><i class="fa-fw fab fa-youtube"></i><span> Animate</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw far fa-comments"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Python之Pandas库学习(2)</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2019-04-27T01:46:00.000Z" title="发表于 2019-04-27 09:46:00">2019-04-27</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2020-07-07T14:35:42.000Z" title="更新于 2020-07-07 22:35:42">2020-07-07</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%A7%91%E5%AD%A6%E8%AE%A1%E7%AE%97/">科学计算</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>8分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Python之Pandas库学习(2)"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="Pandas库数据的排序"><a href="#Pandas库数据的排序" class="headerlink" title="Pandas库数据的排序"></a>Pandas库数据的排序</h2><h3 id="对index进行排序"><a href="#对index进行排序" class="headerlink" title="对index进行排序"></a>对index进行排序</h3><p>Pandas库中使用以下方法对Series和DataFrame的索引进行排序.</p>
+<blockquote>
+<p>Series.sort_index(axis&#x3D;0, level&#x3D;None, ascending&#x3D;True, inplace&#x3D;False, kind&#x3D;’quicksort’, na_position&#x3D;’last’, sort_remaining&#x3D;True) <a target="_blank" rel="noopener" href="http://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.sort_index.html">[官方文档]</a></p>
+<p>DataFrame.sort_index(axis&#x3D;0, level&#x3D;None, ascending&#x3D;True, inplace&#x3D;False, kind&#x3D;’quicksort’, na_position&#x3D;’last’, sort_remaining&#x3D;True, by&#x3D;None) <a target="_blank" rel="noopener" href="http://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.sort_index.html">[官方文档]</a></p>
+</blockquote>
+<ul>
+<li>axis : 要排序索引的轴.</li>
+<li>level : 选择层次.</li>
+<li>ascending : 升序(True)或降序(False), 默认为True.</li>
+<li>inplace : 有返回值(False), 无返回值(True), 默认为False.</li>
+<li>kind : {‘quicksort’, ‘mergesort’, ‘heapsort’}, 排序方式, 快速排序, 归并排序, 堆排序. 默认为’quicksort’</li>
+<li>na_position : {‘first’, ‘last’}, 将无效值放在前面或后面. 默认为last.</li>
+<li>sort_remaining : 对当前索引排序后, 是否对更深层次索引再次排序. 默认为True. 例如:</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df = pd.DataFrame(&#123;<span class="string">&#x27;one&#x27;</span> : pd.Series(np.random.randn(<span class="number">3</span>), index=[<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>]), <span class="string">&#x27;two&#x27;</span> : pd.Series(np.random.randn(<span class="number">4</span>), index=[<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;d&#x27;</span>]), <span class="string">&#x27;three&#x27;</span> : pd.Series(np.random.randn(<span class="number">3</span>), index=[<span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;d&#x27;</span>])&#125;)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df</span><br><span class="line">        one       two     three</span><br><span class="line">a  <span class="number">0.147325</span> -<span class="number">0.061285</span>       NaN</span><br><span class="line">b  <span class="number">1.019212</span>  <span class="number">1.060940</span>  <span class="number">0.634215</span></span><br><span class="line">c -<span class="number">0.594902</span> -<span class="number">0.429536</span> -<span class="number">0.028395</span></span><br><span class="line">d       NaN  <span class="number">0.571735</span>  <span class="number">1.537099</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>unsorted_df = df.reindex(index=[<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;d&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;b&#x27;</span>], columns=[<span class="string">&#x27;three&#x27;</span>, <span class="string">&#x27;two&#x27;</span>, <span class="string">&#x27;one&#x27;</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>unsorted_df</span><br><span class="line">      three       two       one</span><br><span class="line">a       NaN -<span class="number">0.061285</span>  <span class="number">0.147325</span></span><br><span class="line">d  <span class="number">1.537099</span>  <span class="number">0.571735</span>       NaN</span><br><span class="line">c -<span class="number">0.028395</span> -<span class="number">0.429536</span> -<span class="number">0.594902</span></span><br><span class="line">b  <span class="number">0.634215</span>  <span class="number">1.060940</span>  <span class="number">1.019212</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>unsorted_df.sort_index(ascending=<span class="literal">False</span>)</span><br><span class="line">      three       two       one</span><br><span class="line">d  <span class="number">1.537099</span>  <span class="number">0.571735</span>       NaN</span><br><span class="line">c -<span class="number">0.028395</span> -<span class="number">0.429536</span> -<span class="number">0.594902</span></span><br><span class="line">b  <span class="number">0.634215</span>  <span class="number">1.060940</span>  <span class="number">1.019212</span></span><br><span class="line">a       NaN -<span class="number">0.061285</span>  <span class="number">0.147325</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>unsorted_df.sort_index(axis=<span class="number">1</span>)</span><br><span class="line">        one     three       two</span><br><span class="line">a  <span class="number">0.147325</span>       NaN -<span class="number">0.061285</span></span><br><span class="line">d       NaN  <span class="number">1.537099</span>  <span class="number">0.571735</span></span><br><span class="line">c -<span class="number">0.594902</span> -<span class="number">0.028395</span> -<span class="number">0.429536</span></span><br><span class="line">b  <span class="number">1.019212</span>  <span class="number">0.634215</span>  <span class="number">1.060940</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>unsorted_df[<span class="string">&#x27;three&#x27;</span>].sort_index()</span><br><span class="line">a         NaN</span><br><span class="line">b    <span class="number">0.634215</span></span><br><span class="line">c   -<span class="number">0.028395</span></span><br><span class="line">d    <span class="number">1.537099</span></span><br><span class="line">Name: three, dtype: float64</span><br></pre></td></tr></table></figure>
+
+<h3 id="对values进行排序"><a href="#对values进行排序" class="headerlink" title="对values进行排序"></a>对values进行排序</h3><p>Pandas库中使用以下方法对Series和DataFrame的值进行排序.</p>
+<blockquote>
+<p>Series.sort_values(axis&#x3D;0, ascending&#x3D;True, inplace&#x3D;False, kind&#x3D;’quicksort’, na_position&#x3D;’last’) <a target="_blank" rel="noopener" href="http://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.sort_values.html">[官方文档]</a></p>
+<p>DataFrame.sort_values(by, axis&#x3D;0, ascending&#x3D;True, inplace&#x3D;False, kind&#x3D;’quicksort’, na_position&#x3D;’last’) <a target="_blank" rel="noopener" href="http://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.sort_values.html">[官方文档]</a></p>
+</blockquote>
+<ul>
+<li>by : axis轴上要排序的值对应索引的名称或名称列表.</li>
+<li>axis : 要排序的轴.</li>
+<li>ascending : 升序(True)或降序(False), 默认为True.</li>
+<li>inplace : 有返回值(False), 无返回值(True), 默认为False.</li>
+<li>kind : {‘quicksort’, ‘mergesort’, ‘heapsort’}, 排序方式, 快速排序, 归并排序, 堆排序. 默认为’quicksort’</li>
+<li>na_position : {‘first’, ‘last’}, 将无效值放在前面或后面. 默认为last.</li>
+</ul>
+<p>例如:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>df1 = pd.DataFrame(&#123;<span class="string">&#x27;one&#x27;</span>:[<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>],<span class="string">&#x27;two&#x27;</span>:[<span class="number">1</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">4</span>],<span class="string">&#x27;three&#x27;</span>:[<span class="number">5</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>]&#125;)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df1</span><br><span class="line">   one  two  three</span><br><span class="line"><span class="number">0</span>    <span class="number">2</span>    <span class="number">1</span>      <span class="number">5</span></span><br><span class="line"><span class="number">1</span>    <span class="number">1</span>    <span class="number">3</span>      <span class="number">4</span></span><br><span class="line"><span class="number">2</span>    <span class="number">1</span>    <span class="number">2</span>      <span class="number">3</span></span><br><span class="line"><span class="number">3</span>    <span class="number">1</span>    <span class="number">4</span>      <span class="number">2</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df1.sort_values(by=<span class="string">&#x27;two&#x27;</span>)</span><br><span class="line">   one  two  three</span><br><span class="line"><span class="number">0</span>    <span class="number">2</span>    <span class="number">1</span>      <span class="number">5</span></span><br><span class="line"><span class="number">2</span>    <span class="number">1</span>    <span class="number">2</span>      <span class="number">3</span></span><br><span class="line"><span class="number">1</span>    <span class="number">1</span>    <span class="number">3</span>      <span class="number">4</span></span><br><span class="line"><span class="number">3</span>    <span class="number">1</span>    <span class="number">4</span>      <span class="number">2</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df1.sort_values(by=[<span class="string">&#x27;one&#x27;</span>,<span class="string">&#x27;two&#x27;</span>])</span><br><span class="line">   one  two  three</span><br><span class="line"><span class="number">2</span>    <span class="number">1</span>    <span class="number">2</span>      <span class="number">3</span></span><br><span class="line"><span class="number">1</span>    <span class="number">1</span>    <span class="number">3</span>      <span class="number">4</span></span><br><span class="line"><span class="number">3</span>    <span class="number">1</span>    <span class="number">4</span>      <span class="number">2</span></span><br><span class="line"><span class="number">0</span>    <span class="number">2</span>    <span class="number">1</span>      <span class="number">5</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="pandas库数据的统计分析"><a href="#pandas库数据的统计分析" class="headerlink" title="pandas库数据的统计分析"></a>pandas库数据的统计分析</h2><h3 id="数据的基本统计分析方法"><a href="#数据的基本统计分析方法" class="headerlink" title="数据的基本统计分析方法"></a>数据的基本统计分析方法</h3><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>.sum(axis&#x3D;0, skipna&#x3D;True, &#42;&#42;kwargs)</td>
+<td>计算0轴数据的总和, 排除NaN值, 可选参数</td>
+</tr>
+<tr>
+<td>.count(axis&#x3D;0, skipna&#x3D;True, &#42;&#42;kwargs)</td>
+<td>计算0轴数据的总数, 排除NaN值, 可选参数</td>
+</tr>
+<tr>
+<td>.mean(axis&#x3D;0, skipna&#x3D;True, &#42;&#42;kwargs) .median(axis&#x3D;0, skipna&#x3D;True, &#42;&#42;kwargs)</td>
+<td>计算0轴数据的平均值, 中位数, 排除NaN值, 可选参数</td>
+</tr>
+<tr>
+<td>.var(axis&#x3D;0, skipna&#x3D;True, &#42;&#42;kwargs) .std(axis&#x3D;0, skipna&#x3D;True, &#42;&#42;kwargs)</td>
+<td>计算0轴数据的方差, 标准差, 排除NaN值, 可选参数</td>
+</tr>
+<tr>
+<td>.min(axis&#x3D;0, skipna&#x3D;True, &#42;&#42;kwargs) .max(axis&#x3D;0, skipna&#x3D;True, &#42;&#42;kwargs)</td>
+<td>计算0轴数据的最小值和最大值, 排除NaN值, 可选参数</td>
+</tr>
+</tbody></table>
+<p>仅适用于Series类型的方法:</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>.argmin() .argmax()</td>
+<td>计算数据最小值, 最大值所在位置的索引位置(自动索引)</td>
+</tr>
+<tr>
+<td>.idxmin() .idxmax()</td>
+<td>计算数据最小值, 最大值所在位置的索引位置(自定义索引)</td>
+</tr>
+</tbody></table>
+<p>适用于Series和DataFrame的输出所有基本统计分析数据的方法:</p>
+<blockquote>
+<p>.describe(percentiles&#x3D;None, include&#x3D;None, exclude&#x3D;None) <a target="_blank" rel="noopener" href="http://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.describe.html">[官方文档]</a></p>
+</blockquote>
+<ul>
+<li>percentiles : 可以选择特定的百分位数输出, 默认为[.25, .5, .75], 返回25%, 50%, 75%的数</li>
+<li>include : 选定要统计的列或者数据.<ul>
+<li>‘all’ : 所有列都会被分别统计.</li>
+<li>一串dtypes : 只对所选dtypes数据进行分析</li>
+<li>None(默认) : 对所有数据进行分析.</li>
+</ul>
+</li>
+<li>exclude : 类似于include, 只不过时选定不分析的数据类型, 默认为None.</li>
+</ul>
+<p>注意 : 对于混合类型的DataFrame对象, describe()将限制只分析数值列, 如果没有, 则只分析分类列.<br>例如:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">df = pd.DataFrame(&#123;<span class="string">&#x27;categorical&#x27;</span>: pd.Categorical([<span class="string">&#x27;d&#x27;</span>,<span class="string">&#x27;e&#x27;</span>,<span class="string">&#x27;f&#x27;</span>]), <span class="string">&#x27;numeric&#x27;</span>: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], <span class="string">&#x27;object&#x27;</span>: [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>]&#125;)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df</span><br><span class="line">  categorical  numeric <span class="built_in">object</span></span><br><span class="line"><span class="number">0</span>           d        <span class="number">1</span>      a</span><br><span class="line"><span class="number">1</span>           e        <span class="number">2</span>      b</span><br><span class="line"><span class="number">2</span>           f        <span class="number">3</span>      c</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df.describe()</span><br><span class="line">       numeric</span><br><span class="line">count      <span class="number">3.0</span></span><br><span class="line">mean       <span class="number">2.0</span></span><br><span class="line">std        <span class="number">1.0</span></span><br><span class="line"><span class="built_in">min</span>        <span class="number">1.0</span></span><br><span class="line"><span class="number">25</span>%        <span class="number">1.5</span></span><br><span class="line"><span class="number">50</span>%        <span class="number">2.0</span></span><br><span class="line"><span class="number">75</span>%        <span class="number">2.5</span></span><br><span class="line"><span class="built_in">max</span>        <span class="number">3.0</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df.describe(include=<span class="string">&#x27;all&#x27;</span>)</span><br><span class="line">       categorical  numeric <span class="built_in">object</span></span><br><span class="line">count            <span class="number">3</span>      <span class="number">3.0</span>      <span class="number">3</span></span><br><span class="line">unique           <span class="number">3</span>      NaN      <span class="number">3</span></span><br><span class="line">top              f      NaN      a</span><br><span class="line">freq             <span class="number">1</span>      NaN      <span class="number">1</span></span><br><span class="line">mean           NaN      <span class="number">2.0</span>    NaN</span><br><span class="line">std            NaN      <span class="number">1.0</span>    NaN</span><br><span class="line"><span class="built_in">min</span>            NaN      <span class="number">1.0</span>    NaN</span><br><span class="line"><span class="number">25</span>%            NaN      <span class="number">1.5</span>    NaN</span><br><span class="line"><span class="number">50</span>%            NaN      <span class="number">2.0</span>    NaN</span><br><span class="line"><span class="number">75</span>%            NaN      <span class="number">2.5</span>    NaN</span><br><span class="line"><span class="built_in">max</span>            NaN      <span class="number">3.0</span>    NaN</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df.describe(include=[np.number])</span><br><span class="line">       numeric</span><br><span class="line">count      <span class="number">3.0</span></span><br><span class="line">mean       <span class="number">2.0</span></span><br><span class="line">std        <span class="number">1.0</span></span><br><span class="line"><span class="built_in">min</span>        <span class="number">1.0</span></span><br><span class="line"><span class="number">25</span>%        <span class="number">1.5</span></span><br><span class="line"><span class="number">50</span>%        <span class="number">2.0</span></span><br><span class="line"><span class="number">75</span>%        <span class="number">2.5</span></span><br><span class="line"><span class="built_in">max</span>        <span class="number">3.0</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df.describe(include=[np.<span class="built_in">object</span>])</span><br><span class="line">       <span class="built_in">object</span></span><br><span class="line">count       <span class="number">3</span></span><br><span class="line">unique      <span class="number">3</span></span><br><span class="line">top         a</span><br><span class="line">freq        <span class="number">1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df.describe(include=[<span class="string">&#x27;category&#x27;</span>])</span><br><span class="line">       categorical</span><br><span class="line">count            <span class="number">3</span></span><br><span class="line">unique           <span class="number">3</span></span><br><span class="line">top              f</span><br><span class="line">freq             <span class="number">1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df.describe(exclude=[np.<span class="built_in">object</span>])</span><br><span class="line">       categorical  numeric</span><br><span class="line">count            <span class="number">3</span>      <span class="number">3.0</span></span><br><span class="line">unique           <span class="number">3</span>      NaN</span><br><span class="line">top              f      NaN</span><br><span class="line">freq             <span class="number">1</span>      NaN</span><br><span class="line">mean           NaN      <span class="number">2.0</span></span><br><span class="line">std            NaN      <span class="number">1.0</span></span><br><span class="line"><span class="built_in">min</span>            NaN      <span class="number">1.0</span></span><br><span class="line"><span class="number">25</span>%            NaN      <span class="number">1.5</span></span><br><span class="line"><span class="number">50</span>%            NaN      <span class="number">2.0</span></span><br><span class="line"><span class="number">75</span>%            NaN      <span class="number">2.5</span></span><br><span class="line"><span class="built_in">max</span>            NaN      <span class="number">3.0</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="数据的累计统计分析方法"><a href="#数据的累计统计分析方法" class="headerlink" title="数据的累计统计分析方法"></a>数据的累计统计分析方法</h2><h3 id="普通累计统计分析方法"><a href="#普通累计统计分析方法" class="headerlink" title="普通累计统计分析方法"></a>普通累计统计分析方法</h3><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>.cumsum(axis&#x3D;0, skipna&#x3D;True, **kwargs)</td>
+<td>依次给出前n个数的和</td>
+</tr>
+<tr>
+<td>.cumprod(axis&#x3D;0, skipna&#x3D;True, **kwargs)</td>
+<td>依次给出前n个数的积</td>
+</tr>
+<tr>
+<td>.cummax(axis&#x3D;0, skipna&#x3D;True, **kwargs)</td>
+<td>依次给出前n个数的最大值</td>
+</tr>
+<tr>
+<td>.cummin(axis&#x3D;0, skipna&#x3D;True, **kwargs)</td>
+<td>依次给出前n个数的最小值</td>
+</tr>
+</tbody></table>
+<p>例如:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>df = pd.DataFrame([[<span class="number">2.0</span>, <span class="number">1.0</span>], [<span class="number">3.0</span>, <span class="number">2.0</span>], [<span class="number">1.0</span>, <span class="number">0.0</span>]], columns=[<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df</span><br><span class="line">     a    b</span><br><span class="line"><span class="number">0</span>  <span class="number">2.0</span>  <span class="number">1.0</span></span><br><span class="line"><span class="number">1</span>  <span class="number">3.0</span>  <span class="number">2.0</span></span><br><span class="line"><span class="number">2</span>  <span class="number">1.0</span>  <span class="number">0.0</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df.cumsum()</span><br><span class="line">     a    b</span><br><span class="line"><span class="number">0</span>  <span class="number">2.0</span>  <span class="number">1.0</span></span><br><span class="line"><span class="number">1</span>  <span class="number">5.0</span>  <span class="number">3.0</span></span><br><span class="line"><span class="number">2</span>  <span class="number">6.0</span>  <span class="number">3.0</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df.cumsum(axis=<span class="number">1</span>)</span><br><span class="line">     a    b</span><br><span class="line"><span class="number">0</span>  <span class="number">2.0</span>  <span class="number">3.0</span></span><br><span class="line"><span class="number">1</span>  <span class="number">3.0</span>  <span class="number">5.0</span></span><br><span class="line"><span class="number">2</span>  <span class="number">1.0</span>  <span class="number">1.0</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="滚动累计统计分析方法"><a href="#滚动累计统计分析方法" class="headerlink" title="滚动累计统计分析方法"></a>滚动累计统计分析方法</h3><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>.rolling(w).sum(axis&#x3D;0)</td>
+<td>依次计算相邻w个元素的和</td>
+</tr>
+<tr>
+<td>.rollong(w).mean(axis&#x3D;0)</td>
+<td>依次计算相邻w个元素的算术平均值</td>
+</tr>
+<tr>
+<td>.rolling(w).var(axis&#x3D;0)</td>
+<td>依次计算相邻w个元素的方差</td>
+</tr>
+<tr>
+<td>.rolling(w).std(axis&#x3D;0)</td>
+<td>依次计算相邻w个元素的标准差</td>
+</tr>
+<tr>
+<td>.rolling(w).min(axis&#x3D;0) .rolling(w).max()</td>
+<td>依次计算相邻w个元素的最小值和最大值</td>
+</tr>
+</tbody></table>
+<p>例如:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>df = pd.DataFrame([[<span class="number">2.0</span>, <span class="number">1.0</span>], [<span class="number">3.0</span>, <span class="number">2.0</span>], [<span class="number">1.0</span>, <span class="number">0.0</span>]], columns=[<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df.rolling(<span class="number">2</span>).<span class="built_in">sum</span>()</span><br><span class="line">     a    b</span><br><span class="line"><span class="number">0</span>  NaN  NaN</span><br><span class="line"><span class="number">1</span>  <span class="number">5.0</span>  <span class="number">3.0</span></span><br><span class="line"><span class="number">2</span>  <span class="number">4.0</span>  <span class="number">2.0</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df.rolling(<span class="number">2</span>, axis=<span class="number">1</span>).<span class="built_in">sum</span>()</span><br><span class="line">    a    b</span><br><span class="line"><span class="number">0</span> NaN  <span class="number">3.0</span></span><br><span class="line"><span class="number">1</span> NaN  <span class="number">5.0</span></span><br><span class="line"><span class="number">2</span> NaN  <span class="number">1.0</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="数据的相关性分析方法"><a href="#数据的相关性分析方法" class="headerlink" title="数据的相关性分析方法"></a>数据的相关性分析方法</h3><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>.cov()</td>
+<td>计算协方差矩阵</td>
+</tr>
+<tr>
+<td>.corr(method&#x3D;’pearson’)</td>
+<td>计算相关系数矩阵, Pearson, Spearman, Kendall等系数</td>
+</tr>
+</tbody></table>
+<p>例如:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>df = pd.DataFrame([(<span class="number">2</span>, <span class="number">3</span>), (<span class="number">0</span>, <span class="number">6</span>), (<span class="number">6</span>, <span class="number">0</span>), (<span class="number">2</span>, <span class="number">1</span>)],columns=[<span class="string">&#x27;dogs&#x27;</span>, <span class="string">&#x27;cats&#x27;</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df</span><br><span class="line">   dogs  cats</span><br><span class="line"><span class="number">0</span>     <span class="number">2</span>     <span class="number">3</span></span><br><span class="line"><span class="number">1</span>     <span class="number">0</span>     <span class="number">6</span></span><br><span class="line"><span class="number">2</span>     <span class="number">6</span>     <span class="number">0</span></span><br><span class="line"><span class="number">3</span>     <span class="number">2</span>     <span class="number">1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df.corr()</span><br><span class="line">          dogs      cats</span><br><span class="line">dogs  <span class="number">1.000000</span> -<span class="number">0.851064</span></span><br><span class="line">cats -<span class="number">0.851064</span>  <span class="number">1.000000</span></span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://zzZ5.xyz">zzZ5</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://zzz5.xyz/2019/04/27/python/pandas/python-pandas-02/">https://zzz5.xyz/2019/04/27/python/pandas/python-pandas-02/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://zzZ5.xyz" target="_blank">zzZ5的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/python/">python</a><a class="post-meta__tags" href="/tags/pandas/">pandas</a></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2020/07/07/Xcm9tOjeH1D5bkY.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2019/04/28/python/others/python-requests/" title="Python之Requests库学习"><img class="cover" src="https://i.loli.net/2020/06/03/zjdBHF4e9n1XVgN.png" onerror="onerror=null;src='/assets/blogImg/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Python之Requests库学习</div></div></a></div><div class="next-post pull-right"><a href="/2019/04/26/python/pandas/python-pandas-01/" title="Python之Pandas库学习(1)"><img class="cover" src="https://i.loli.net/2020/07/07/Xcm9tOjeH1D5bkY.png" onerror="onerror=null;src='/assets/blogImg/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Python之Pandas库学习(1)</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2019/04/26/python/pandas/python-pandas-01/" title="Python之Pandas库学习(1)"><img class="cover" src="https://i.loli.net/2020/07/07/Xcm9tOjeH1D5bkY.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-04-26</div><div class="title">Python之Pandas库学习(1)</div></div></a></div><div><a href="/2020/07/12/python/pandas/python-pandas-03/" title="Python的Pandas库中的行列转换"><img class="cover" src="https://i.loli.net/2020/07/07/Xcm9tOjeH1D5bkY.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-12</div><div class="title">Python的Pandas库中的行列转换</div></div></a></div><div><a href="/2019/04/24/python/matplotlib/python-matplotlib-01/" title="Python之Matplotlib库学习(1)"><img class="cover" src="https://i.loli.net/2020/07/07/OxwJ84QzgPTfcpI.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-04-24</div><div class="title">Python之Matplotlib库学习(1)</div></div></a></div><div><a href="/2019/04/25/python/matplotlib/python-matplotlib-02/" title="Python之Matplotlib库学习(2)"><img class="cover" src="https://i.loli.net/2020/07/07/OxwJ84QzgPTfcpI.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-04-25</div><div class="title">Python之Matplotlib库学习(2)</div></div></a></div><div><a href="/2020/01/01/python/matplotlib/python-matplotlib-03/" title="Python之Matplotlib库学习(3)"><img class="cover" src="https://i.loli.net/2020/07/07/OxwJ84QzgPTfcpI.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-01-01</div><div class="title">Python之Matplotlib库学习(3)</div></div></a></div><div><a href="/2020/10/13/python/matplotlib/python-matplotlib-nested%20pie%20chart/" title="使用Matplotlib绘制嵌套饼图"><img class="cover" src="https://i.loli.net/2020/07/07/OxwJ84QzgPTfcpI.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-10-13</div><div class="title">使用Matplotlib绘制嵌套饼图</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2020/06/03/OFvA9uNmodI8tki.png" onerror="this.onerror=null;this.src='/assets/blogImg/404.jpg'" alt="avatar"/></div><div class="author-info__name">zzZ5</div><div class="author-info__description">忙得要命</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">44</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">22</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zzZ5"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/zzZ5" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://space.bilibili.com/11657777" target="_blank" title="Bilibili"><i class="fa-brands fa-bilibili"></i></a><a class="social-icon" href="mailto:baoju_liu@foxmail.com" target="_blank" title="Email"><i class="fa fa-envelope"></i></a><a class="social-icon" href="/atom.xml" target="_blank" title="RSS"><i class="fa fa-rss"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Time will tell</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Pandas%E5%BA%93%E6%95%B0%E6%8D%AE%E7%9A%84%E6%8E%92%E5%BA%8F"><span class="toc-number">1.</span> <span class="toc-text">Pandas库数据的排序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9index%E8%BF%9B%E8%A1%8C%E6%8E%92%E5%BA%8F"><span class="toc-number">1.1.</span> <span class="toc-text">对index进行排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9values%E8%BF%9B%E8%A1%8C%E6%8E%92%E5%BA%8F"><span class="toc-number">1.2.</span> <span class="toc-text">对values进行排序</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pandas%E5%BA%93%E6%95%B0%E6%8D%AE%E7%9A%84%E7%BB%9F%E8%AE%A1%E5%88%86%E6%9E%90"><span class="toc-number">2.</span> <span class="toc-text">pandas库数据的统计分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%9F%E8%AE%A1%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95"><span class="toc-number">2.1.</span> <span class="toc-text">数据的基本统计分析方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%9A%84%E7%B4%AF%E8%AE%A1%E7%BB%9F%E8%AE%A1%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95"><span class="toc-number">3.</span> <span class="toc-text">数据的累计统计分析方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%99%AE%E9%80%9A%E7%B4%AF%E8%AE%A1%E7%BB%9F%E8%AE%A1%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95"><span class="toc-number">3.1.</span> <span class="toc-text">普通累计统计分析方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BB%9A%E5%8A%A8%E7%B4%AF%E8%AE%A1%E7%BB%9F%E8%AE%A1%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95"><span class="toc-number">3.2.</span> <span class="toc-text">滚动累计统计分析方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%9A%84%E7%9B%B8%E5%85%B3%E6%80%A7%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95"><span class="toc-number">3.3.</span> <span class="toc-text">数据的相关性分析方法</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/09/13/others/docker/" title="Docker使用说明"><img src="https://s2.loli.net/2023/09/13/nS6LMRyXTewZdAJ.png" onerror="this.onerror=null;this.src='/assets/blogImg/404.jpg'" alt="Docker使用说明"/></a><div class="content"><a class="title" href="/2023/09/13/others/docker/" title="Docker使用说明">Docker使用说明</a><time datetime="2023-09-13T01:49:00.000Z" title="发表于 2023-09-13 09:49:00">2023-09-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/09/01/diary/diary-2023-0901/" title="开始更新"><img src="https://i.loli.net/2020/06/03/uhAQD4IUr2kfoM6.gif" onerror="this.onerror=null;this.src='/assets/blogImg/404.jpg'" alt="开始更新"/></a><div class="content"><a class="title" href="/2023/09/01/diary/diary-2023-0901/" title="开始更新">开始更新</a><time datetime="2023-09-01T07:32:00.000Z" title="发表于 2023-09-01 15:32:00">2023-09-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/03/16/lot/mosquitto/" title="Ubuntu上使用Mosqitto部署Mqtt服务器"><img src="https://i.loli.net/2021/03/17/17lSbmuzf4wLnJh.png" onerror="this.onerror=null;this.src='/assets/blogImg/404.jpg'" alt="Ubuntu上使用Mosqitto部署Mqtt服务器"/></a><div class="content"><a class="title" href="/2021/03/16/lot/mosquitto/" title="Ubuntu上使用Mosqitto部署Mqtt服务器">Ubuntu上使用Mosqitto部署Mqtt服务器</a><time datetime="2021-03-16T13:11:00.000Z" title="发表于 2021-03-16 21:11:00">2021-03-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/11/04/web/django/django-nginx/" title="Ubuntu平台使用nginx部署Django项目"><img src="https://i.loli.net/2020/06/03/KmiQ2kSAJn4X3vZ.png" onerror="this.onerror=null;this.src='/assets/blogImg/404.jpg'" alt="Ubuntu平台使用nginx部署Django项目"/></a><div class="content"><a class="title" href="/2020/11/04/web/django/django-nginx/" title="Ubuntu平台使用nginx部署Django项目">Ubuntu平台使用nginx部署Django项目</a><time datetime="2020-11-04T08:06:00.000Z" title="发表于 2020-11-04 16:06:00">2020-11-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/10/13/python/matplotlib/python-matplotlib-nested%20pie%20chart/" title="使用Matplotlib绘制嵌套饼图"><img src="https://i.loli.net/2020/07/07/OxwJ84QzgPTfcpI.png" onerror="this.onerror=null;this.src='/assets/blogImg/404.jpg'" alt="使用Matplotlib绘制嵌套饼图"/></a><div class="content"><a class="title" href="/2020/10/13/python/matplotlib/python-matplotlib-nested%20pie%20chart/" title="使用Matplotlib绘制嵌套饼图">使用Matplotlib绘制嵌套饼图</a><time datetime="2020-10-13T01:30:00.000Z" title="发表于 2020-10-13 09:30:00">2020-10-13</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://i.loli.net/2020/07/07/Xcm9tOjeH1D5bkY.png')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By zzZ5</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="/js/tw_cn.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const initValine = () => {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'wugk9aIpc580sE0GdxsCb7LL-MdYXbMMI',
+      appKey: 'WmxJKdt4J543WQWOM9X0Usyt',
+      avatar: 'monsterid',
+      serverURLs: 'https://wugk9aip.api.lncldglobal.com',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: false
+    }, null))
+  }
+
+  const loadValine = async () => {
+    if (typeof Valine === 'function') initValine()
+    else {
+      await getScript('https://cdn.jsdelivr.net/npm/valine@1.5.1/dist/Valine.min.js')
+      initValine()
+    }
+  }
+
+  if ('Valine' === 'Valine' || !false) {
+    if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+    else setTimeout(loadValine, 0)
+  } else {
+    window.loadOtherComment = loadValine
+  }
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

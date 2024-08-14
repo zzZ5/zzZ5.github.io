@@ -1,0 +1,311 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Ubuntu上使用Mosqitto部署Mqtt服务器 | zzZ5的博客</title><meta name="author" content="zzZ5"><meta name="copyright" content="zzZ5"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="简单介绍如何在Ubuntu平台使用Mosqitto部署和使用mqtt服务器.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu上使用Mosqitto部署Mqtt服务器">
+<meta property="og:url" content="https://zzz5.xyz/2021/03/16/lot/mosquitto/index.html">
+<meta property="og:site_name" content="zzZ5的博客">
+<meta property="og:description" content="简单介绍如何在Ubuntu平台使用Mosqitto部署和使用mqtt服务器.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/03/17/17lSbmuzf4wLnJh.png">
+<meta property="article:published_time" content="2021-03-16T13:11:00.000Z">
+<meta property="article:modified_time" content="2023-09-04T00:43:03.825Z">
+<meta property="article:author" content="zzZ5">
+<meta property="article:tag" content="lot">
+<meta property="article:tag" content="mosqitto">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/03/17/17lSbmuzf4wLnJh.png"><link rel="shortcut icon" href="/assets/img/zzz5.ico"><link rel="canonical" href="https://zzz5.xyz/2021/03/16/lot/mosquitto/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-RHY2S6DLG5"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-RHY2S6DLG5');
+</script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Ubuntu上使用Mosqitto部署Mqtt服务器',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-09-04 08:43:03'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="zzZ5的博客" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2020/06/03/OFvA9uNmodI8tki.png" onerror="onerror=null;src='/assets/blogImg/404.jpg'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">44</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">22</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-list"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/photo/"><i class="fa-fw far fa-image"></i><span> Photo</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/animate/"><i class="fa-fw fab fa-youtube"></i><span> Animate</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw far fa-comments"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://i.loli.net/2021/03/17/17lSbmuzf4wLnJh.png')"><nav id="nav"><span id="blog-info"><a href="/" title="zzZ5的博客"><span class="site-name">zzZ5的博客</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-list"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/photo/"><i class="fa-fw far fa-image"></i><span> Photo</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/animate/"><i class="fa-fw fab fa-youtube"></i><span> Animate</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw far fa-comments"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Ubuntu上使用Mosqitto部署Mqtt服务器</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-03-16T13:11:00.000Z" title="发表于 2021-03-16 21:11:00">2021-03-16</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-09-04T00:43:03.825Z" title="更新于 2023-09-04 08:43:03">2023-09-04</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%89%A9%E8%81%94%E7%BD%91/">物联网</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.9k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>6分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Ubuntu上使用Mosqitto部署Mqtt服务器"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Mosqitto 是一款实现了消息推送协议 MQTT v3.1 的开源消息代理软件, 提供轻量级的, 支持可发布&#x2F;可订阅的的消息推送模式, 使设备对设备之间的短消息通信变得简单, 比如现在应用广泛的低功耗传感器, 手机, 嵌入式计算机, 微型控制器等移动设备.</p>
+<p>而消息推送协议 MQTT 是物联网(loT)常用的一种协议, 它的特点有:</p>
+<ol>
+<li>使用发布&#x2F;订阅消息模式, 提供一对多的消息发布, 解除应用程序耦合.</li>
+<li>小型传输, 开销很小(固定长度的头部是2字节), 协议交换最小化, 以降低网络流量. 这也是它在物联网领域广泛应用的主要原因之一.</li>
+<li>支持三种QoS(Quality of Service，服务质量)：<ul>
+<li>“至多一次”, 消息发布完全依赖底层TCP&#x2F;IP网络. 会发生消息丢失或重复. 这一级别可用于如下情况, 环境传感器数据, 丢失一次读记录无所谓, 因为不久后还会有第二次发送. 这一种方式主要普通APP的推送, 倘若你的智能设备在消息推送时未联网, 推送过去没收到, 再次联网也就收不到了.</li>
+<li>“至少一次”, 确保消息到达, 但消息重复可能会发生.</li>
+<li>“只有一次”, 确保消息到达一次. 在一些要求比较严格的计费系统中, 可以使用此级别. 在计费系统中, 消息重复或丢失会导致不正确的结果. 这种最高质量的消息发布服务还可以用于即时通讯类的APP的推送, 确保用户收到且只会收到一次.</li>
+</ul>
+</li>
+</ol>
+<h2 id="下载安装"><a href="#下载安装" class="headerlink" title="下载安装"></a>下载安装</h2><p>这里我用的Ubuntu系统, 首先将mosquitto添加到储存库列表</p>
+<p><code>sudo apt-add-repository ppa:mosquitto-dev/mosquitto-ppa</code></p>
+<p>再更新软件包</p>
+<p><code>sudo apt-get update</code></p>
+<p>然后安装mosquitto:</p>
+<p><code>sudo apt-get install mosquitto</code></p>
+<p>根据需要确定是否安装命令行客户端(因为mqtt已经有非常多的gui客户端了, 命令行客户端反而显得没那么好用了, 这里我推荐一个 <a target="_blank" rel="noopener" href="https://mqttx.app/cn/">MATTX</a> , 各个平台都能用, 倒是挺方便的):</p>
+<p><code>sudo apt-get install mosquitto-clients</code></p>
+<h2 id="mosquitto详解"><a href="#mosquitto详解" class="headerlink" title="mosquitto详解"></a>mosquitto详解</h2><p>mosquitto主要分为几个部分, 分别为 mosquitto(运行服务器), mosquitto.conf(配置文件), mosquitto_passwd(用户配置), aclfile(用户权限配置).&#96;&#96;</p>
+<h3 id="mosquitto"><a href="#mosquitto" class="headerlink" title="mosquitto"></a>mosquitto</h3><h4 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h4><blockquote>
+<p>mosquitto [-c config file] [ -d | –daemon ] [-p port number] [-v]</p>
+</blockquote>
+<p>参数: </p>
+<ul>
+<li>-c config file: 从config文件加载配置. 如果没有给出, 则使用配置文件的默认值.</li>
+<li>-d 或者 –daemon: 将mosquitto在后台以<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B">守护进程</a>的身份运行.</li>
+<li>-p port number: 指定监听的端口, 默认的端口是1883. 也可以指定监听多个端口.</li>
+<li>-v: 使用详细日志记录, 也可以在配置文件中设置.</li>
+</ul>
+<h4 id="关于重启mosquitto"><a href="#关于重启mosquitto" class="headerlink" title="关于重启mosquitto"></a>关于重启mosquitto</h4><p>一般来说, mosquitto是默认开机自动启动的, 可以通过删除<code>/etc/init.d/mosquitto</code>来关闭开机自启.</p>
+<p>通常可以用 <code>ps -aux | grep mosquitto</code> 查找 mosquitto 运行的进程, 再用 <code>kill -9 进程号</code> 来关闭mosquitto, 但这很多时候会出现各种问题, 以至于无法关闭. 这时可以用 ‘&#x2F;etc&#x2F;init.d&#x2F;mosquitto stop’来关闭, 或者用’&#x2F;etc&#x2F;init.d&#x2F;mosquitto restart’来实现重启.</p>
+<h3 id="mosquitto-conf"><a href="#mosquitto-conf" class="headerlink" title="mosquitto.conf"></a>mosquitto.conf</h3><h4 id="主要的设置"><a href="#主要的设置" class="headerlink" title="主要的设置"></a>主要的设置</h4><ul>
+<li><p>acl_file file path: 设置访问控制列表文件的路径. 如果定义了该文件，则使用该文件的内容来控制客户端对代理上的主题的访问. 如果定义了此参数，则只有列出的主题才能访问.主题访问权限添加的行格式为：</p>
+<blockquote>
+<p>topic [read|write|readwrite] <topic><br>  访问类型由”Read”, “Write” 或 “ReadWrite” 控制. 此参数是可选的, 如果未指定, 则访问权限为读&#x2F;写. 与订阅中一样, <topic> 可以包含 + 或 # 通配符.<br>  如果允许匿名的话, 第一组主题将应用于匿名客户端.</p>
+</blockquote>
+<blockquote>
+<p>user <username><br>  指定要控制访问的用户名</p>
+</blockquote>
+<blockquote>
+<p>pattern [read|write|readwrite] <topic><br>  可以使用正则来控制访问的话题, 其中 %c 是匹配客户端的 client id, %u 是匹配客户端的 username.</p>
+</blockquote>
+</li>
+</ul>
+<p>例如:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 第一行是匿名客户端可以访问的topic, 所有匿名用户都可以订阅话题 topic/anonymous.</span><br><span class="line">topic read topic/anonymous</span><br><span class="line"># 下面是用户admin可以访问的topic, admin可以订阅和发布 topic/ 下所有话题的信息.</span><br><span class="line">user admin</span><br><span class="line">topic readwirte topic/#</span><br><span class="line"># 正则限制, 所有用户都可以在话题 topic/username/data 发布消息.</span><br><span class="line">pattern write topic/%u/data</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>password_file: 用户&#x2F;密码文件, 默认格式: username:password</p>
+</li>
+<li><p>include_dir &#x2F;etc&#x2F;mosquitto&#x2F;conf.d: 自己的配置可以放到以下目录中</p>
+</li>
+<li><p>allow_anonymous [ true | false ]: 是否允许匿名, 默认是true.</p>
+</li>
+<li><p>allow_duplicate_messages [ true | false ]: 是否允许重复&#x2F;重叠订阅, 默认是true.</p>
+</li>
+<li><p>allow_zero_length_clientid [ true | false ]: 是否允许零长度客户端id, 默认为true.</p>
+</li>
+<li><p>use_username_as_clientid [ true | false ]: 使用用户名为客户端id, 默认为false.</p>
+</li>
+<li><p>pid_file &#x2F;var&#x2F;run&#x2F;mosquitto.pid: 服务进程的PID.</p>
+</li>
+<li><p>user username: 服务进程的系统用户.</p>
+</li>
+<li><p>port port number: 服务绑定的端口, 默认的是1883</p>
+</li>
+<li><p>retry_interval: 当QoS为1或2的消息已经被发送后, mosquitto在一段时间内仍未接收到客户端的反馈消息, 将重新发送消息. 默认为20秒.</p>
+</li>
+<li><p>max_connections -1: 最大连接数, -1代表不限制.</p>
+</li>
+<li><p>require_certificate false: 必须提供证书以保证数据安全性.</p>
+</li>
+<li><p>cafile: CA证书文件.</p>
+</li>
+<li><p>capath: CA证书目录.</p>
+</li>
+<li><p>certfile: PEM证书文件.</p>
+</li>
+<li><p>keyfile: PEM密钥文件.</p>
+</li>
+<li><p>autosave_interval 1800: 消息自动保存的间隔时间</p>
+</li>
+<li><p>autosave_on_changes false: 消息自动保存功能的开关</p>
+</li>
+<li><p>persistence true: 持久化功能的开关</p>
+</li>
+<li><p>persistence_file mosquitto.db: 持久化DB文件</p>
+</li>
+<li><p>persistence_location &#x2F;var&#x2F;lib&#x2F;mosquitto&#x2F;: 持久化DB文件目录</p>
+</li>
+<li><p>log_dest none: 4种日志模式: stdout, stderr, syslog, topic, none 则表示不记日志, 此配置可以提升些许性能.</p>
+</li>
+<li><p>log_type error: 选择日志的级别(可设置多项), 包括error, warning, notice, information.</p>
+</li>
+<li><p>connection_messages true: 是否记录客户端连接信息.</p>
+</li>
+<li><p>log_timestamp true: 是否记录日志时间</p>
+</li>
+</ul>
+<h4 id="推荐的配置"><a href="#推荐的配置" class="headerlink" title="推荐的配置"></a>推荐的配置</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">pid_file /var/run/mosquitto.pid</span><br><span class="line"></span><br><span class="line">persistence true</span><br><span class="line"></span><br><span class="line">persistence_location /var/lib/mosquitto/</span><br><span class="line"></span><br><span class="line">include_dir /etc/mosquitto/conf.d</span><br><span class="line"></span><br><span class="line">allow_anonymous false</span><br><span class="line"></span><br><span class="line">password_file /etc/mosquitto/pwfile</span><br><span class="line"></span><br><span class="line">acl_file /etc/mosquitto/aclfile</span><br></pre></td></tr></table></figure>
+
+<h3 id="mosquitto-passwd"><a href="#mosquitto-passwd" class="headerlink" title="mosquitto_passwd"></a>mosquitto_passwd</h3><blockquote>
+<p>mosquitto_passwd [ -c | -D ] passwordfile username<br>mosquitto_passwd -b passwordfile username password<br>mosquitto_passwd -U passwordfile</p>
+</blockquote>
+<p>mosquitto_passwd用于管理mosquitto代理的mqtt服务器的密码文件, 其中username不能包含”:”.</p>
+<p>参数:</p>
+<ul>
+<li>-b: 以批量模式运行. 这允许在命令行中提供密码, 这可以很方便, 但应小心使用, 因为密码将在命令行和命令历史记录中可见.</li>
+<li>-c: 创建新的密码文件. 如果文件已经存在, 它将被覆盖.</li>
+<li>-D: 从密码文件中删除指定的用户.</li>
+<li>-U: 此选项可用于升级&#x2F;将带有纯文本密码的密码文件升级&#x2F;转换为使用哈希密码的文件. 它将修改指定的文件, 它无法检测密码是否已经哈希，因此在已经包含哈希密码的密码文件中使用它将根据旧哈希生成新的哈希, 并使密码文件无法使用.</li>
+<li>passwordfile: 要修改密码的文件.</li>
+<li>username: 添加&#x2F;更新&#x2F;删除的用户名.</li>
+<li>password: 在批次模式下使用的密码.</li>
+</ul>
+<p>例如:<br>将用户test添加到新的密码文件:<br><code>mosquitto_passwd -c /etc/mosquitto/passwd test</code></p>
+<p>从密码文件中删除用户test:<br><code>mosquitto_passwd -D /etc/mosquitto/passwd test</code></p>
+<h3 id="aclfile"><a href="#aclfile" class="headerlink" title="aclfile"></a>aclfile</h3><p>详见 <a href="#%E4%B8%BB%E8%A6%81%E7%9A%84%E8%AE%BE%E7%BD%AE">主要的设置</a></p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><em>[1]<a target="_blank" rel="noopener" href="https://mosquitto.org/man/mosquitto-8.html">mosquitto</a></em><br><em>[2]<a target="_blank" rel="noopener" href="https://mosquitto.org/man/mosquitto-conf-5.html">mosquitto.conf</a></em><br><em>[3]<a target="_blank" rel="noopener" href="https://mosquitto.org/man/mosquitto_passwd-1.html">mosquitto_passwd</a></em><br><em>[4]<a target="_blank" rel="noopener" href="https://www.cnblogs.com/cxt-janson/p/10136128.html">mosquitto.conf配置参数详细说明</a></em></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://zzZ5.xyz">zzZ5</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://zzz5.xyz/2021/03/16/lot/mosquitto/">https://zzz5.xyz/2021/03/16/lot/mosquitto/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://zzZ5.xyz" target="_blank">zzZ5的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/lot/">lot</a><a class="post-meta__tags" href="/tags/mosqitto/">mosqitto</a></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/03/17/17lSbmuzf4wLnJh.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/09/01/diary/diary-2023-0901/" title="开始更新"><img class="cover" src="https://i.loli.net/2020/06/03/uhAQD4IUr2kfoM6.gif" onerror="onerror=null;src='/assets/blogImg/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">开始更新</div></div></a></div><div class="next-post pull-right"><a href="/2020/11/04/web/django/django-nginx/" title="Ubuntu平台使用nginx部署Django项目"><img class="cover" src="https://i.loli.net/2020/06/03/KmiQ2kSAJn4X3vZ.png" onerror="onerror=null;src='/assets/blogImg/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Ubuntu平台使用nginx部署Django项目</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2020/06/03/OFvA9uNmodI8tki.png" onerror="this.onerror=null;this.src='/assets/blogImg/404.jpg'" alt="avatar"/></div><div class="author-info__name">zzZ5</div><div class="author-info__description">忙得要命</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">44</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">22</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zzZ5"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/zzZ5" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://space.bilibili.com/11657777" target="_blank" title="Bilibili"><i class="fa-brands fa-bilibili"></i></a><a class="social-icon" href="mailto:baoju_liu@foxmail.com" target="_blank" title="Email"><i class="fa fa-envelope"></i></a><a class="social-icon" href="/atom.xml" target="_blank" title="RSS"><i class="fa fa-rss"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Time will tell</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-number">1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85"><span class="toc-number">2.</span> <span class="toc-text">下载安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mosquitto%E8%AF%A6%E8%A7%A3"><span class="toc-number">3.</span> <span class="toc-text">mosquitto详解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#mosquitto"><span class="toc-number">3.1.</span> <span class="toc-text">mosquitto</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4"><span class="toc-number">3.1.1.</span> <span class="toc-text">命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E9%87%8D%E5%90%AFmosquitto"><span class="toc-number">3.1.2.</span> <span class="toc-text">关于重启mosquitto</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mosquitto-conf"><span class="toc-number">3.2.</span> <span class="toc-text">mosquitto.conf</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E7%9A%84%E8%AE%BE%E7%BD%AE"><span class="toc-number">3.2.1.</span> <span class="toc-text">主要的设置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8E%A8%E8%8D%90%E7%9A%84%E9%85%8D%E7%BD%AE"><span class="toc-number">3.2.2.</span> <span class="toc-text">推荐的配置</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mosquitto-passwd"><span class="toc-number">3.3.</span> <span class="toc-text">mosquitto_passwd</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#aclfile"><span class="toc-number">3.4.</span> <span class="toc-text">aclfile</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">4.</span> <span class="toc-text">参考资料</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/09/13/others/docker/" title="Docker使用说明"><img src="https://s2.loli.net/2023/09/13/nS6LMRyXTewZdAJ.png" onerror="this.onerror=null;this.src='/assets/blogImg/404.jpg'" alt="Docker使用说明"/></a><div class="content"><a class="title" href="/2023/09/13/others/docker/" title="Docker使用说明">Docker使用说明</a><time datetime="2023-09-13T01:49:00.000Z" title="发表于 2023-09-13 09:49:00">2023-09-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/09/01/diary/diary-2023-0901/" title="开始更新"><img src="https://i.loli.net/2020/06/03/uhAQD4IUr2kfoM6.gif" onerror="this.onerror=null;this.src='/assets/blogImg/404.jpg'" alt="开始更新"/></a><div class="content"><a class="title" href="/2023/09/01/diary/diary-2023-0901/" title="开始更新">开始更新</a><time datetime="2023-09-01T07:32:00.000Z" title="发表于 2023-09-01 15:32:00">2023-09-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/03/16/lot/mosquitto/" title="Ubuntu上使用Mosqitto部署Mqtt服务器"><img src="https://i.loli.net/2021/03/17/17lSbmuzf4wLnJh.png" onerror="this.onerror=null;this.src='/assets/blogImg/404.jpg'" alt="Ubuntu上使用Mosqitto部署Mqtt服务器"/></a><div class="content"><a class="title" href="/2021/03/16/lot/mosquitto/" title="Ubuntu上使用Mosqitto部署Mqtt服务器">Ubuntu上使用Mosqitto部署Mqtt服务器</a><time datetime="2021-03-16T13:11:00.000Z" title="发表于 2021-03-16 21:11:00">2021-03-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/11/04/web/django/django-nginx/" title="Ubuntu平台使用nginx部署Django项目"><img src="https://i.loli.net/2020/06/03/KmiQ2kSAJn4X3vZ.png" onerror="this.onerror=null;this.src='/assets/blogImg/404.jpg'" alt="Ubuntu平台使用nginx部署Django项目"/></a><div class="content"><a class="title" href="/2020/11/04/web/django/django-nginx/" title="Ubuntu平台使用nginx部署Django项目">Ubuntu平台使用nginx部署Django项目</a><time datetime="2020-11-04T08:06:00.000Z" title="发表于 2020-11-04 16:06:00">2020-11-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/10/13/python/matplotlib/python-matplotlib-nested%20pie%20chart/" title="使用Matplotlib绘制嵌套饼图"><img src="https://i.loli.net/2020/07/07/OxwJ84QzgPTfcpI.png" onerror="this.onerror=null;this.src='/assets/blogImg/404.jpg'" alt="使用Matplotlib绘制嵌套饼图"/></a><div class="content"><a class="title" href="/2020/10/13/python/matplotlib/python-matplotlib-nested%20pie%20chart/" title="使用Matplotlib绘制嵌套饼图">使用Matplotlib绘制嵌套饼图</a><time datetime="2020-10-13T01:30:00.000Z" title="发表于 2020-10-13 09:30:00">2020-10-13</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://i.loli.net/2021/03/17/17lSbmuzf4wLnJh.png')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By zzZ5</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="/js/tw_cn.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const initValine = () => {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'wugk9aIpc580sE0GdxsCb7LL-MdYXbMMI',
+      appKey: 'WmxJKdt4J543WQWOM9X0Usyt',
+      avatar: 'monsterid',
+      serverURLs: 'https://wugk9aip.api.lncldglobal.com',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: false
+    }, null))
+  }
+
+  const loadValine = async () => {
+    if (typeof Valine === 'function') initValine()
+    else {
+      await getScript('https://cdn.jsdelivr.net/npm/valine@1.5.1/dist/Valine.min.js')
+      initValine()
+    }
+  }
+
+  if ('Valine' === 'Valine' || !false) {
+    if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+    else setTimeout(loadValine, 0)
+  } else {
+    window.loadOtherComment = loadValine
+  }
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

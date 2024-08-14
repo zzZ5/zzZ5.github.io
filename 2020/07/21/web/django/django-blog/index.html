@@ -1,0 +1,454 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Django博客开发 | zzZ5的博客</title><meta name="author" content="zzZ5"><meta name="copyright" content="zzZ5"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="简单介绍我在Django建站学习过程中遇到的坑和解决方法.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Django博客开发">
+<meta property="og:url" content="https://zzz5.xyz/2020/07/21/web/django/django-blog/index.html">
+<meta property="og:site_name" content="zzZ5的博客">
+<meta property="og:description" content="简单介绍我在Django建站学习过程中遇到的坑和解决方法.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2020/06/03/KmiQ2kSAJn4X3vZ.png">
+<meta property="article:published_time" content="2020-07-21T04:28:00.000Z">
+<meta property="article:modified_time" content="2020-07-29T08:23:36.000Z">
+<meta property="article:author" content="zzZ5">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="django">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2020/06/03/KmiQ2kSAJn4X3vZ.png"><link rel="shortcut icon" href="/assets/img/zzz5.ico"><link rel="canonical" href="https://zzz5.xyz/2020/07/21/web/django/django-blog/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-RHY2S6DLG5"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-RHY2S6DLG5');
+</script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Django博客开发',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2020-07-29 16:23:36'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="zzZ5的博客" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2020/06/03/OFvA9uNmodI8tki.png" onerror="onerror=null;src='/assets/blogImg/404.jpg'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">44</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">22</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-list"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/photo/"><i class="fa-fw far fa-image"></i><span> Photo</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/animate/"><i class="fa-fw fab fa-youtube"></i><span> Animate</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw far fa-comments"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://i.loli.net/2020/06/03/KmiQ2kSAJn4X3vZ.png')"><nav id="nav"><span id="blog-info"><a href="/" title="zzZ5的博客"><span class="site-name">zzZ5的博客</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-list"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/photo/"><i class="fa-fw far fa-image"></i><span> Photo</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/animate/"><i class="fa-fw fab fa-youtube"></i><span> Animate</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw far fa-comments"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Django博客开发</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-07-21T04:28:00.000Z" title="发表于 2020-07-21 12:28:00">2020-07-21</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2020-07-29T08:23:36.000Z" title="更新于 2020-07-29 16:23:36">2020-07-29</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/web/">web</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>14分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Django博客开发"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="说在前面"><a href="#说在前面" class="headerlink" title="说在前面"></a>说在前面</h2><p>这里重点介绍Django后端, 前端我用的是bootstrap5前端组件库, 水平不够就不进行过多介绍了.</p>
+<h2 id="开发环境搭建"><a href="#开发环境搭建" class="headerlink" title="开发环境搭建"></a>开发环境搭建</h2><ul>
+<li>使用的python版本为Python3.8;</li>
+<li>使用的django版本为Django3.0;</li>
+<li>使用的编辑器为vscode.</li>
+</ul>
+<h2 id="项目需求分析"><a href="#项目需求分析" class="headerlink" title="项目需求分析"></a>项目需求分析</h2><p>这里我要搭建的是一个普通的blog, 需要的是blog的基础功能, 包括:</p>
+<ul>
+<li>导航栏</li>
+<li>横幅幻灯片</li>
+<li>文章列表</li>
+<li>文章分类</li>
+<li>文章标签</li>
+<li>文章内容</li>
+<li>文章浏览量</li>
+<li>文章搜索</li>
+<li>热门排行</li>
+</ul>
+<p>其实也没多少东西, 包含的页面主要有:</p>
+<ol>
+<li>博客首页</li>
+<li>文章分类页</li>
+<li>文章标签页</li>
+<li>文章搜索页</li>
+<li>文章内容页</li>
+</ol>
+<h2 id="数据库设计"><a href="#数据库设计" class="headerlink" title="数据库设计"></a>数据库设计</h2><h3 id="文章表结构"><a href="#文章表结构" class="headerlink" title="文章表结构"></a>文章表结构</h3><table>
+<thead>
+<tr>
+<th>表字段</th>
+<th>字段类型</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>id</td>
+<td>int</td>
+<td>系统自动生成的主键</td>
+</tr>
+<tr>
+<td>title</td>
+<td>CharField(max_length&#x3D;128)</td>
+<td>文章标题</td>
+</tr>
+<tr>
+<td>category</td>
+<td>ForeignKey</td>
+<td>多对一, 关联文章分类表</td>
+</tr>
+<tr>
+<td>tags</td>
+<td>ManyToManyField</td>
+<td>多对多, 关联标签列表</td>
+</tr>
+<tr>
+<td>cover</td>
+<td>ImageField</td>
+<td>文章封面</td>
+</tr>
+<tr>
+<td>views</td>
+<td>PositiveIntegerField</td>
+<td>文章浏览数</td>
+</tr>
+<tr>
+<td>abstract</td>
+<td>TextField(max_length&#x3D;250)</td>
+<td>文章摘要</td>
+</tr>
+<tr>
+<td>content</td>
+<td>TextField</td>
+<td>文章内容</td>
+</tr>
+<tr>
+<td>created_time</td>
+<td>DateTimeField</td>
+<td>文章创建时间</td>
+</tr>
+<tr>
+<td>modified_time</td>
+<td>DateTimeField</td>
+<td>文章修改时间</td>
+</tr>
+</tbody></table>
+<h3 id="幻灯片表结构"><a href="#幻灯片表结构" class="headerlink" title="幻灯片表结构"></a>幻灯片表结构</h3><table>
+<thead>
+<tr>
+<th>表字段</th>
+<th>字段类型</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>id</td>
+<td>int</td>
+<td>系统自动生成的主键</td>
+</tr>
+<tr>
+<td>text_info</td>
+<td>CharField(max_length&#x3D;100)</td>
+<td>图片文本信息</td>
+</tr>
+<tr>
+<td>img</td>
+<td>ImageField</td>
+<td>幻灯片图片</td>
+</tr>
+<tr>
+<td>link_url</td>
+<td>URLField</td>
+<td>图片链接的URL</td>
+</tr>
+<tr>
+<td>index</td>
+<td>int</td>
+<td>图片播放位序</td>
+</tr>
+<tr>
+<td>is_active</td>
+<td>BooleanField</td>
+<td>是否播放</td>
+</tr>
+</tbody></table>
+<h3 id="文章分类表"><a href="#文章分类表" class="headerlink" title="文章分类表"></a>文章分类表</h3><table>
+<thead>
+<tr>
+<th>表字段</th>
+<th>字段类型</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>id</td>
+<td>int</td>
+<td>系统自动生成的主键</td>
+</tr>
+<tr>
+<td>name</td>
+<td>CharField(max_length&#x3D;30)</td>
+<td>类别名</td>
+</tr>
+<tr>
+<td>index</td>
+<td>index</td>
+<td>类别次序</td>
+</tr>
+</tbody></table>
+<h3 id="文章标签表"><a href="#文章标签表" class="headerlink" title="文章标签表"></a>文章标签表</h3><table>
+<thead>
+<tr>
+<th>表字段</th>
+<th>字段类型</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>id</td>
+<td>int</td>
+<td>系统自动生成的主键</td>
+</tr>
+<tr>
+<td>name</td>
+<td>CharField(max_length&#x3D;30)</td>
+<td>标签名</td>
+</tr>
+</tbody></table>
+<h2 id="项目创建以及配置"><a href="#项目创建以及配置" class="headerlink" title="项目创建以及配置"></a>项目创建以及配置</h2><h3 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h3><p>打开命令行, cd 到一个你想放置你代码的目录, 然后运行以下命令:<br><code>django-admin startproject myblog</code><br>这行代码将会在当前目录下创建一个 myblog 目录.<br>进入 myblog 目录,输入命令<br><code>python manage.py runserver</code><br>即可在  <a target="_blank" rel="noopener" href="https://127.0.0.1:8000/">https://127.0.0.1:8000/</a> 中看到欢迎界面<br>创建应用时使用命令<br><code>python manage.py startapp blog</code><br>这将会创建一个名为blog的目录, 即为应用.</p>
+<p>其它常用命令还有:<br><code>python manage.py makemigrations</code><br>Django 会检测你对模型文件的修改, 并且把修改的部分储存为一次迁移.<br>再使用命令<br><code>python manage.py migrate</code><br>进行迁移.</p>
+<p><code>python manage.py shell</code><br>使用该命令可以在<code>shell</code>界面对django项目进行简单调试.</p>
+<h3 id="myblog-settings-py配置"><a href="#myblog-settings-py配置" class="headerlink" title="myblog&#x2F;settings.py配置"></a>myblog&#x2F;settings.py配置</h3><blockquote>
+<p>设置语言和时区:</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#settings</span></span><br><span class="line">LANGUAGE_CODE = <span class="string">&#x27;zh-hans&#x27;</span>  <span class="comment"># 修改语言为中文</span></span><br><span class="line">TIME_ZONE = <span class="string">&#x27;Asia/Shanghai&#x27;</span>  <span class="comment"># 修改时区为上海</span></span><br><span class="line">USE_TZ = <span class="literal">True</span>  <span class="comment"># 建议设置为True, 这样后端全局都会使用UTC时间, 但是在模板中渲染时会自动转换为当前时区 </span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>在INSTALL_APPS中添加应用: </p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">INSTALLED_APPS = [</span><br><span class="line">    <span class="string">&#x27;blog.apps.BlogConfig&#x27;</span>,<span class="comment">#注册APP应用</span></span><br><span class="line">    ...</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>配置数据库：</p>
+</blockquote>
+<p>这里我用的是mysql数据库(默认是使用sqlite3), 需要安装 MySQLdb 才能使用.<br><code>pip install MySQLdb</code><br>并在<code>blog/__init__.py</code>中添加 import MySQLdb.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 修改成mysql如下</span></span><br><span class="line">DATABASES = &#123;</span><br><span class="line">    <span class="string">&#x27;default&#x27;</span>: &#123;</span><br><span class="line">        <span class="string">&#x27;ENGINE&#x27;</span>: <span class="string">&#x27;django.db.backends.mysql&#x27;</span>, </span><br><span class="line">        <span class="string">&#x27;NAME&#x27;</span>: <span class="string">&#x27;myblog&#x27;</span>,  <span class="comment">#  你的数据库名称</span></span><br><span class="line">        <span class="string">&#x27;USER&#x27;</span>: <span class="string">&#x27;name&#x27;</span>,  <span class="comment">#  你的数据库用户名</span></span><br><span class="line">        <span class="string">&#x27;PASSWORD&#x27;</span>: <span class="string">&#x27;password&#x27;</span>,  <span class="comment">#  你的数据库密码</span></span><br><span class="line">        <span class="string">&#x27;HOST&#x27;</span>: <span class="string">&#x27;localhost&#x27;</span>,  <span class="comment">#  你的数据库主机，留空默认为localhost</span></span><br><span class="line">        <span class="string">&#x27;PORT&#x27;</span>: <span class="string">&#x27;3306&#x27;</span>,  <span class="comment">#  你的数据库端口</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意要提前建好schema.    </p>
+<blockquote>
+<p>设置静态文件夹目录的路径:</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 设置静态文件目录</span></span><br><span class="line">STATIC_URL = <span class="string">&#x27;/static/&#x27;</span></span><br><span class="line">STATICFILES_DIRS = (</span><br><span class="line">    os.path.join(BASE_DIR, <span class="string">&quot;static&quot;</span>),</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置媒体文件上传目录</span></span><br><span class="line">MEDIA_URL = <span class="string">&#x27;/media/&#x27;</span>  </span><br><span class="line">MEDIA_ROOT = os.path.join(BASE_DIR, <span class="string">&#x27;media&#x27;</span>)    <span class="comment"># </span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Django-ORM创建"><a href="#Django-ORM创建" class="headerlink" title="Django ORM创建"></a>Django ORM创建</h2><p>Django是通过Model操作数据库, Model准确且唯一的描述了数据. 它包含你储存的数据的重要字段和行为. 一般来说, 每一个模型都映射一张数据库表.</p>
+<ul>
+<li>每个模型都是一个 Python 的类, 这些类继承 django.db.models.Model.</li>
+<li>模型类的每个属性都相当于一个数据库的字段.</li>
+<li>利用这些, Django 提供了一个自动生成访问数据库的 API.</li>
+</ul>
+<p>根据我们数据库的设计, 可以很快写出这个Model(文章内容我是使用富文本保存的, 但是django并没有集成富文本, 这里使用的是django-ckeditor富文本编辑器, 可以使用<code>pip install django-cheditor</code>自行安装, 注意在INSTALL_APPS中注册<code>ckeditor</code>, 具体使用方法可以查看 <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/a14970431762">Django搭建个人博客：使用django-ckeditor富文本编辑器</a>):</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># myblog/blog/models.py</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models</span><br><span class="line"><span class="keyword">from</span> ckeditor.fields <span class="keyword">import</span> RichTextField</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Category</span>(models.Model):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;分类表&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    name = models.CharField(max_length=<span class="number">100</span>, unique=<span class="literal">True</span>)</span><br><span class="line">    index = models.IntegerField(default=<span class="number">999</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__str__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">self</span>.name</span><br><span class="line"></span><br><span class="line">    <span class="keyword">class</span> <span class="title class_">Meta</span>:</span><br><span class="line">        <span class="comment"># 排序方式按照index排序</span></span><br><span class="line">        ordering = [<span class="string">&quot;index&quot;</span>]</span><br><span class="line">        verbose_name = <span class="string">&#x27;category&#x27;</span></span><br><span class="line">        verbose_name_plural = <span class="string">&#x27;categorys&#x27;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Tag</span>(models.Model):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;标签表&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    name = models.CharField(max_length=<span class="number">100</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__str__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">self</span>.name</span><br><span class="line"></span><br><span class="line">    <span class="keyword">class</span> <span class="title class_">Meta</span>:</span><br><span class="line">        verbose_name = <span class="string">&#x27;tag&#x27;</span></span><br><span class="line">        verbose_name_plural = <span class="string">&#x27;tags&#x27;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Article</span>(models.Model):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;文章表&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    title = models.CharField(max_length=<span class="number">128</span>)</span><br><span class="line">    <span class="comment"># 使用ckeditor的富文本保存.</span></span><br><span class="line">    content = RichTextField(blank=<span class="literal">True</span>, null=<span class="literal">True</span>)</span><br><span class="line">    abstract = models.TextField(max_length=<span class="number">500</span>, blank=<span class="literal">True</span>, null=<span class="literal">True</span>)</span><br><span class="line">    cover = models.ImageField(upload_to=<span class="string">&#x27;article_cover/%Y/%m/%d/&#x27;</span>,</span><br><span class="line">                              verbose_name=<span class="string">&#x27;article_cover&#x27;</span>, blank=<span class="literal">True</span>, null=<span class="literal">True</span>)</span><br><span class="line">    category = models.ForeignKey(</span><br><span class="line">        Category, on_delete=models.DO_NOTHING, blank=<span class="literal">True</span>, null=<span class="literal">True</span>)</span><br><span class="line">    tags = models.ManyToManyField(Tag, blank=<span class="literal">True</span>, null=<span class="literal">True</span>)</span><br><span class="line">    views = models.PositiveIntegerField(default=<span class="number">0</span>)</span><br><span class="line">    created_time = models.DateTimeField(auto_now_add=<span class="literal">True</span>)</span><br><span class="line">    modified_time = models.DateTimeField(auto_now=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">class</span> <span class="title class_">Meta</span>:</span><br><span class="line">        ordering = [<span class="string">&quot;-created_time&quot;</span>]</span><br><span class="line">        verbose_name = <span class="string">&#x27;article&#x27;</span></span><br><span class="line">        verbose_name_plural = <span class="string">&#x27;articles&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__str__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">self</span>.title</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Banner</span>(models.Model):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;幻灯片表&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    text_info = models.CharField(max_length=<span class="number">50</span>, default=<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">    img = models.ImageField(upload_to=<span class="string">&#x27;banner/&#x27;</span>)</span><br><span class="line">    link_url = models.URLField(max_length=<span class="number">100</span>)</span><br><span class="line">    is_active = models.BooleanField(default=<span class="literal">False</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__str__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">self</span>.text_info</span><br><span class="line"></span><br><span class="line">    <span class="keyword">class</span> <span class="title class_">Meta</span>:</span><br><span class="line">        verbose_name = <span class="string">&#x27;banner&#x27;</span></span><br><span class="line">        verbose_name_plural = <span class="string">&#x27;banners&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>各个参数我就不一一赘述了, 有需要的可以在<a target="_blank" rel="noopener" href="https://docs.djangoproject.com/zh-hans/3.0/topics/db/models/">官方文档</a>查询.</p>
+<p>ORM创建后, 要执行命令<br><code>python manage.py makemigrations</code><br><code>python manage.py migrate</code><br>进行检测和迁移.</p>
+<h2 id="Admin管理界面设计"><a href="#Admin管理界面设计" class="headerlink" title="Admin管理界面设计"></a>Admin管理界面设计</h2><p>先要创建一个管理员账号<code>python manage.py createsuperuser</code>按照指示注册账号密码.<br>启动服务器后, 打开浏览器, 转到你本地域名的 “&#x2F;admin&#x2F;“ 目录, – 比如 “<a target="_blank" rel="noopener" href="http://127.0.0.1:8000/admin/">http://127.0.0.1:8000/admin/</a>“ .你应该会看见管理员登录界面.</p>
+<p>需要在你的应用的<code>admin.py</code>文件中注册.<br>打开<code>blog/admin.py</code>, 键入以下代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> Article, Banner, Category, Tag</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">TagAdmin</span>(admin.ModelAdmin):</span><br><span class="line">    fields = [</span><br><span class="line">        <span class="string">&#x27;name&#x27;</span></span><br><span class="line">    ]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CategoryAdmin</span>(admin.ModelAdmin):</span><br><span class="line">    fields = [</span><br><span class="line">        <span class="string">&#x27;name&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;index&#x27;</span></span><br><span class="line">    ]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ArticleAdmin</span>(admin.ModelAdmin):</span><br><span class="line">    <span class="comment"># 编辑时分为多个字段集</span></span><br><span class="line">    fieldsets = [</span><br><span class="line">        (<span class="string">&#x27;文章标题&#x27;</span>, &#123;<span class="string">&#x27;fields&#x27;</span>: [<span class="string">&#x27;title&#x27;</span>]&#125;),</span><br><span class="line">        (<span class="string">&#x27;封面&#x27;</span>, &#123;<span class="string">&#x27;fields&#x27;</span>: [<span class="string">&#x27;cover&#x27;</span>]&#125;),</span><br><span class="line">        (<span class="string">&#x27;文章内容&#x27;</span>, &#123;<span class="string">&#x27;fields&#x27;</span>: [<span class="string">&#x27;abstract&#x27;</span>, <span class="string">&#x27;content&#x27;</span>]&#125;),</span><br><span class="line">        (<span class="string">&#x27;阅读量&#x27;</span>, &#123;<span class="string">&#x27;fields&#x27;</span>: [<span class="string">&#x27;views&#x27;</span>], <span class="string">&#x27;classes&#x27;</span>: [<span class="string">&#x27;collapse&#x27;</span>]&#125;),</span><br><span class="line">    ]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 文章列表里显示想要显示的字段</span></span><br><span class="line">    list_display = (<span class="string">&#x27;id&#x27;</span>, <span class="string">&#x27;title&#x27;</span>, <span class="string">&#x27;category&#x27;</span>, <span class="string">&#x27;views&#x27;</span>, <span class="string">&#x27;created_time&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 满50条数据就自动分页</span></span><br><span class="line">    list_per_page = <span class="number">50</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 后台数据列表排序方式</span></span><br><span class="line">    ordering = (<span class="string">&#x27;-created_time&#x27;</span>,)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 设置哪些字段可以点击进入编辑界面</span></span><br><span class="line">    list_display_links = (<span class="string">&#x27;id&#x27;</span>, <span class="string">&#x27;title&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 设置后台查询时用的字段</span></span><br><span class="line">    search_fields = [<span class="string">&#x27;title&#x27;</span>]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 用来过滤字段的过滤器</span></span><br><span class="line">    list_filter = [<span class="string">&#x27;created_time&#x27;</span>, <span class="string">&#x27;modified_time&#x27;</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ArticleInline</span>(admin.StackedInline):</span><br><span class="line">    model = Article</span><br><span class="line">    extra = <span class="number">2</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">BannerAdmin</span>(admin.ModelAdmin):</span><br><span class="line">    <span class="comment"># 编辑时的排列顺序</span></span><br><span class="line">    fields = [</span><br><span class="line">        <span class="string">&#x27;text_info&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;img&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;link_url&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;is_active&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;index&#x27;</span></span><br><span class="line">    ]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">admin.site.register(Article, ArticleAdmin)</span><br><span class="line">admin.site.register(Category, CategoryAdmin)</span><br><span class="line">admin.site.register(Tag, TagAdmin)</span><br><span class="line">admin.site.register(Banner, BannerAdmin)</span><br></pre></td></tr></table></figure>
+
+<p>此时后台站点管理的界面是这样的:</p>
+<p><img src="/assets/blogImg/django/django01.png" alt="django01"></p>
+<p>添加文章界面是这样的:</p>
+<p><img src="/assets/blogImg/django/django02.png" alt="django02"></p>
+<h2 id="URL设计"><a href="#URL设计" class="headerlink" title="URL设计"></a>URL设计</h2><p>先打开<code>myblog/urls.py</code>, 键入以下代码:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> path, re_path, include</span><br><span class="line"><span class="keyword">from</span> django.conf <span class="keyword">import</span> settings</span><br><span class="line"><span class="keyword">from</span> django.views <span class="keyword">import</span> static</span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    <span class="comment"># 后台站点管理的url</span></span><br><span class="line">    path(<span class="string">&#x27;admin/&#x27;</span>, admin.site.urls),</span><br><span class="line">    <span class="comment"># 获取储存图片的url</span></span><br><span class="line">    re_path(<span class="string">r&#x27;^media/(?P&lt;path&gt;.*)$&#x27;</span>, static.serve,</span><br><span class="line">            &#123;<span class="string">&#x27;document_root&#x27;</span>: settings.MEDIA_ROOT&#125;),</span><br><span class="line">    <span class="comment"># blog应用的url</span></span><br><span class="line">    path(<span class="string">&#x27;&#x27;</span>, include(<span class="string">&#x27;blog.urls&#x27;</span>))</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>再在blog应用文件夹中创建urls.py, 键入以下代码:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># blog/urls.py</span></span><br><span class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> path</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> . <span class="keyword">import</span> views</span><br><span class="line"></span><br><span class="line">app_name = <span class="string">&#x27;blog&#x27;</span></span><br><span class="line">urlpatterns = [</span><br><span class="line">    <span class="comment"># 首页的url</span></span><br><span class="line">    path(<span class="string">&#x27;&#x27;</span>, views.index, name=<span class="string">&#x27;index&#x27;</span>),</span><br><span class="line">    <span class="comment"># 文章内容的url, 并将文章id传给views</span></span><br><span class="line">    path(<span class="string">&#x27;articles/&lt;int:id&gt;/&#x27;</span>, views.article, name=<span class="string">&#x27;articles),</span></span><br><span class="line"><span class="string">    # 同分类文章列表的url, 并将category传给views</span></span><br><span class="line"><span class="string">    path(&#x27;</span>categories/&lt;<span class="built_in">str</span>:category&gt;/<span class="string">&#x27;, views.category, name=&#x27;</span>categories<span class="string">&#x27;),</span></span><br><span class="line"><span class="string">    # 同标签文章列表的url, 并将tag传给views</span></span><br><span class="line"><span class="string">    path(&#x27;</span>tags/&lt;<span class="built_in">str</span>:tag&gt;/<span class="string">&#x27;, views.tag, name=&#x27;</span>tags<span class="string">&#x27;),</span></span><br><span class="line"><span class="string">    # 搜索文章的url</span></span><br><span class="line"><span class="string">    path(&#x27;</span>search/<span class="string">&#x27;, views.search, name=&#x27;</span>search<span class="string">&#x27;),</span></span><br><span class="line"><span class="string">]</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Views视图函数"><a href="#Views视图函数" class="headerlink" title="Views视图函数"></a>Views视图函数</h2><p>打开<code>blog/views.py</code>, 键入以下代码:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> render</span><br><span class="line"><span class="keyword">from</span> django.core.paginator <span class="keyword">import</span> Paginator</span><br><span class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> Article, Banner, Category, Tag</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取全部页面都有的一些参数, 包括所有分类, 标签和热门文章</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">getGlobalParameter</span>():</span><br><span class="line">    categories = Category.objects.<span class="built_in">all</span>()</span><br><span class="line">    tags = Tag.objects.<span class="built_in">all</span>()</span><br><span class="line">    hot_articles = Article.objects.order_by(<span class="string">&#x27;-views&#x27;</span>)[:<span class="number">5</span>]</span><br><span class="line">    result = &#123;<span class="string">&#x27;categories&#x27;</span>: categories, <span class="string">&#x27;category_link&#x27;</span>: <span class="string">&#x27;/categories/&#x27;</span>,</span><br><span class="line">              <span class="string">&#x27;tags&#x27;</span>: tags, <span class="string">&#x27;tag_link&#x27;</span>: <span class="string">&#x27;/tags/&#x27;</span>,</span><br><span class="line">              <span class="string">&#x27;hot_articles&#x27;</span>: hot_articles, <span class="string">&#x27;article_link&#x27;</span>: <span class="string">&#x27;/articles/&#x27;</span>&#125;</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取给定文章的基本信息</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">getArticlesInfo</span>(<span class="params">articles, has_content=<span class="literal">False</span></span>):</span><br><span class="line">    articles_info = []</span><br><span class="line">    <span class="comment"># 所有文章的除内容外的信息</span></span><br><span class="line">    <span class="keyword">for</span> article <span class="keyword">in</span> articles:</span><br><span class="line">        info = &#123;<span class="string">&#x27;id&#x27;</span>: article.<span class="built_in">id</span>, <span class="string">&#x27;title&#x27;</span>: article.title, <span class="string">&#x27;cover&#x27;</span>: article.cover,</span><br><span class="line">                <span class="string">&#x27;abstract&#x27;</span>: article.abstract, <span class="string">&#x27;views&#x27;</span>: article.views,</span><br><span class="line">                <span class="string">&#x27;category&#x27;</span>: article.category, <span class="string">&#x27;tags&#x27;</span>: article.tags.<span class="built_in">all</span>(),</span><br><span class="line">                <span class="string">&#x27;created_time&#x27;</span>: article.created_time,</span><br><span class="line">                <span class="string">&#x27;link&#x27;</span>: <span class="string">&#x27;/articles/&#123;&#125;&#x27;</span>.<span class="built_in">format</span>(article.<span class="built_in">id</span>)</span><br><span class="line">                &#125;</span><br><span class="line">        <span class="keyword">if</span> has_content:</span><br><span class="line">            info.update(&#123;<span class="string">&#x27;content&#x27;</span>: article.content&#125;)</span><br><span class="line">        articles_info.append(info)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> articles_info</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取给定文章的分页信息和当前页面的文章</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">getPageInfoAndArticles</span>(<span class="params">articles, current_page=<span class="number">1</span>, pages_num=<span class="number">5</span></span>):</span><br><span class="line">    paginator = Paginator(articles, pages_num)</span><br><span class="line">    <span class="keyword">if</span> current_page &lt; <span class="number">0</span> <span class="keyword">or</span> current_page &gt; paginator.num_pages:</span><br><span class="line">        current_page = <span class="number">1</span></span><br><span class="line">    current_articles = paginator.page(current_page)</span><br><span class="line">    page_info = &#123;<span class="string">&#x27;pages&#x27;</span>: paginator.page_range, <span class="string">&#x27;current&#x27;</span>: current_page,</span><br><span class="line">                 <span class="string">&#x27;has_next&#x27;</span>: current_articles.has_next(), <span class="string">&#x27;has_previous&#x27;</span>: current_articles.has_previous&#125;</span><br><span class="line">    <span class="keyword">return</span> page_info, current_articles</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 首页</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">index</span>(<span class="params">request</span>):</span><br><span class="line">    <span class="comment"># 获取当前请求的页面</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        current_page = <span class="built_in">int</span>(request.GET.get(</span><br><span class="line">            <span class="string">&quot;page&quot;</span>)) <span class="keyword">if</span> request.GET.get(<span class="string">&quot;page&quot;</span>) <span class="keyword">else</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        current_page = <span class="number">1</span></span><br><span class="line">    <span class="comment"># 获取页面信息和当前页面的文章</span></span><br><span class="line">    page_info, articles = getPageInfoAndArticles(</span><br><span class="line">        Article.objects.<span class="built_in">all</span>(), current_page=current_page, pages_num=<span class="number">5</span>)</span><br><span class="line">    <span class="comment"># 获取幻灯片</span></span><br><span class="line">    banners = Banner.objects.<span class="built_in">filter</span>(is_active=<span class="literal">True</span>)</span><br><span class="line">    <span class="comment"># 将所有内容传递给模板</span></span><br><span class="line">    content = &#123;<span class="string">&#x27;page_info&#x27;</span>: page_info,</span><br><span class="line">               <span class="string">&#x27;banners&#x27;</span>: banners, <span class="string">&#x27;articles&#x27;</span>: getArticlesInfo(articles)&#125;</span><br><span class="line">    content.update(getGlobalParameter())</span><br><span class="line">    <span class="keyword">return</span> render(request, <span class="string">&#x27;blog/index.html&#x27;</span>, content)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 文章内容页</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">article</span>(<span class="params">request, <span class="built_in">id</span></span>):</span><br><span class="line">    article = Article.objects.get(<span class="built_in">id</span>=<span class="built_in">id</span>)</span><br><span class="line">    <span class="comment"># 更新该文章阅读数</span></span><br><span class="line">    article.views += <span class="number">1</span></span><br><span class="line">    article.save()</span><br><span class="line">    <span class="comment"># 获取包括内容在内的文章信息, 并将文章信息加入content传递给模板</span></span><br><span class="line">    content = &#123;<span class="string">&#x27;article&#x27;</span>: getArticlesInfo([article], has_content=<span class="literal">True</span>)[<span class="number">0</span>]&#125;</span><br><span class="line">    content.update(getGlobalParameter())</span><br><span class="line">    <span class="keyword">return</span> render(request, <span class="string">&#x27;blog/article.html&#x27;</span>, content)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">category</span>(<span class="params">request, category</span>):</span><br><span class="line">    <span class="comment"># 获取当前请求的页面</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        current_page = <span class="built_in">int</span>(request.GET.get(</span><br><span class="line">            <span class="string">&quot;page&quot;</span>)) <span class="keyword">if</span> request.GET.get(<span class="string">&quot;page&quot;</span>) <span class="keyword">else</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        current_page = <span class="number">1</span></span><br><span class="line">    <span class="comment"># 获取页面信息和当前页面的同类文章</span></span><br><span class="line">    page_info, articles = getPageInfoAndArticles(</span><br><span class="line">        Article.objects.<span class="built_in">filter</span>(category__name=category), current_page=current_page, pages_num=<span class="number">5</span>)</span><br><span class="line">    content = &#123;<span class="string">&#x27;page_info&#x27;</span>: page_info, <span class="string">&#x27;articles&#x27;</span>: getArticlesInfo(articles)&#125;</span><br><span class="line">    content.update(getGlobalParameter())</span><br><span class="line">    <span class="keyword">return</span> render(request, <span class="string">&#x27;blog/category.html&#x27;</span>, content)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">tag</span>(<span class="params">request, tag</span>):</span><br><span class="line">    <span class="comment"># 获取当前请求的页面</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        current_page = <span class="built_in">int</span>(request.GET.get(</span><br><span class="line">            <span class="string">&quot;page&quot;</span>)) <span class="keyword">if</span> request.GET.get(<span class="string">&quot;page&quot;</span>) <span class="keyword">else</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        current_page = <span class="number">1</span></span><br><span class="line">    <span class="comment"># 获取页面信息和当前页面的同类文章</span></span><br><span class="line">    page_info, articles = getPageInfoAndArticles(</span><br><span class="line">        Article.objects.<span class="built_in">filter</span>(tags__name=tag), current_page=current_page, pages_num=<span class="number">5</span>)</span><br><span class="line">    content = &#123;<span class="string">&#x27;page_info&#x27;</span>: page_info, <span class="string">&#x27;articles&#x27;</span>: getArticlesInfo(articles)&#125;</span><br><span class="line">    content.update(getGlobalParameter())</span><br><span class="line">    <span class="keyword">return</span> render(request, <span class="string">&#x27;blog/tag.html&#x27;</span>, content)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">search</span>(<span class="params">request</span>):</span><br><span class="line">    q = request.GET.get(<span class="string">&#x27;q&#x27;</span>)  <span class="comment"># 获取搜索的关键词q</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        current_page = <span class="built_in">int</span>(request.GET.get(</span><br><span class="line">            <span class="string">&quot;page&quot;</span>)) <span class="keyword">if</span> request.GET.get(<span class="string">&quot;page&quot;</span>) <span class="keyword">else</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        current_page = <span class="number">1</span></span><br><span class="line">    content = &#123;&#125;</span><br><span class="line">    <span class="keyword">if</span> q != <span class="literal">None</span>:</span><br><span class="line">        <span class="comment"># 获取到搜索关键词通过标题进行匹配</span></span><br><span class="line">        page_info, articles = getPageInfoAndArticles(</span><br><span class="line">            Article.objects.<span class="built_in">filter</span>(title__icontains=q), current_page=current_page, pages_num=<span class="number">5</span>)</span><br><span class="line">        content = &#123;<span class="string">&#x27;q&#x27;</span>: q,</span><br><span class="line">                   <span class="string">&#x27;page_info&#x27;</span>: page_info,</span><br><span class="line">                   <span class="string">&#x27;articles&#x27;</span>: getArticlesInfo(articles)&#125;</span><br><span class="line">    content.update(getGlobalParameter())</span><br><span class="line">    <span class="keyword">return</span> render(request, <span class="string">&#x27;blog/search.html&#x27;</span>, content)</span><br></pre></td></tr></table></figure>
+
+<h2 id="模板搭建"><a href="#模板搭建" class="headerlink" title="模板搭建"></a>模板搭建</h2><p>前端模板我是使用的bootstrap前端框架, 技术不够成熟, 只能做个简单演示.</p>
+<p><img src="/assets/blogImg/django/django03.png" alt="django03"></p>
+<p>将各个功能分成多个HTML, 最终将其组合起来, 这样有利于修改.<br>最终首页HTML的实现就非常简单了:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#123;% extends &quot;blog\includes\base.html&quot; %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% block banner %&#125;</span><br><span class="line">&#123;% include &quot;blog\includes\banner.html&quot; %&#125;</span><br><span class="line">&#123;% endblock banner %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% block article_list %&#125;</span><br><span class="line">&#123;% include &quot;blog\includes\article_list.html&quot; %&#125;</span><br><span class="line">&#123;% endblock article_list%&#125;</span><br><span class="line"></span><br><span class="line">&#123;% block pagination %&#125;</span><br><span class="line">&#123;% include &quot;blog\includes\pagination.html&quot; %&#125;</span><br><span class="line">&#123;% endblock pagination %&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其中所有页面都有的界面, 如分类, 热门文章, 标签, 页脚, 都放在了<code>base.html</code>, 其他所有页面都继承自<code>base.html</code>, 并在其界面基础上进行修改, 比如搜索界面, 就加入了搜索框, 并重写了pagination(分页)界面.</p>
+<h2 id="各个页面的实现"><a href="#各个页面的实现" class="headerlink" title="各个页面的实现"></a>各个页面的实现</h2><p>最终各个页面的成果也出来了:</p>
+<p>首页:</p>
+<div class="gallery-container" data-type="data" data-button="">
+      <div class="gallery-data">[{"url":"https://i.loli.net/2020/07/24/DbG9EdNuwcrBMfJ.png","alt":"首页大屏页面"},{"url":"https://i.loli.net/2020/07/25/w2RAtaMZoXxridg.png","alt":"首页小屏页面"}]</div>
+      <div class="gallery-items">
+      </div>
+    </div>
+
+<p>分类页面:</p>
+<div class="gallery-container" data-type="data" data-button="">
+      <div class="gallery-data">[{"url":"https://i.loli.net/2020/07/25/aQu1xNJfmwcl7tO.png","alt":"分类大屏页面"},{"url":"https://i.loli.net/2020/07/25/RpAsDeI8wB2FzS5.png","alt":"分类小屏页面"}]</div>
+      <div class="gallery-items">
+      </div>
+    </div>
+
+<p>标签页面:</p>
+<div class="gallery-container" data-type="data" data-button="">
+      <div class="gallery-data">[{"url":"https://i.loli.net/2020/07/25/j5qJkmdcY8AyvfR.png","alt":"标签大屏界面"},{"url":"https://i.loli.net/2020/07/25/auGJwUzNcjOvPlt.png","alt":"标签小屏界面"}]</div>
+      <div class="gallery-items">
+      </div>
+    </div>
+
+<p>文章页面:</p>
+<div class="gallery-container" data-type="data" data-button="">
+      <div class="gallery-data">[{"url":"https://i.loli.net/2020/07/25/osezSb28gXvkJRd.png","alt":"文章大屏界面"},{"url":"https://i.loli.net/2020/07/25/vFIx6cR2eGNoprZ.png","alt":"文章小屏界面"}]</div>
+      <div class="gallery-items">
+      </div>
+    </div>
+
+<p>搜索页面:</p>
+<div class="gallery-container" data-type="data" data-button="">
+      <div class="gallery-data">[{"url":"https://i.loli.net/2020/07/25/PDRTGqlAHxmCJ1M.png","alt":"搜索大屏界面.png"},{"url":"https://i.loli.net/2020/07/25/DyoxB8FMpLncYw1.png","alt":"搜索小屏界面.png"}]</div>
+      <div class="gallery-items">
+      </div>
+    </div>
+
+<h2 id="最后再说两句"><a href="#最后再说两句" class="headerlink" title="最后再说两句"></a>最后再说两句</h2><p>该博客我已上传到 github , 有需要可以自取 <a target="_blank" rel="noopener" href="https://github.com/zzZ5/myblog">myblog</a>.<br>关于很多细节方便我没过多说明, 参考文献中的三个文档都有详细说明, 可以在那里面找到.</p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p><em>[1] <a target="_blank" rel="noopener" href="https://docs.djangoproject.com/zh-hans/3.0/">Django3.0官方文档</a></em><br><em>[2] <a target="_blank" rel="noopener" href="https://www.liujiangblog.com/course/django/">Django Django教程 Django视频 Django实战 Django开发 - 刘江的Django教程</a></em><br><em>[3] <a target="_blank" rel="noopener" href="https://www.django.cn/">Django中文网,Django中国,Django中文社区,django教程,Django！</a></em></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://zzZ5.xyz">zzZ5</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://zzz5.xyz/2020/07/21/web/django/django-blog/">https://zzz5.xyz/2020/07/21/web/django/django-blog/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://zzZ5.xyz" target="_blank">zzZ5的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/python/">python</a><a class="post-meta__tags" href="/tags/django/">django</a></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2020/06/03/KmiQ2kSAJn4X3vZ.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/07/25/python/seaborn/python-seaborn/" title="Python之Seaborn库学习"><img class="cover" src="https://i.loli.net/2020/07/28/QGYBj5eCzr6DO7I.png" onerror="onerror=null;src='/assets/blogImg/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Python之Seaborn库学习</div></div></a></div><div class="next-post pull-right"><a href="/2020/07/12/python/pandas/python-pandas-03/" title="Python的Pandas库中的行列转换"><img class="cover" src="https://i.loli.net/2020/07/07/Xcm9tOjeH1D5bkY.png" onerror="onerror=null;src='/assets/blogImg/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Python的Pandas库中的行列转换</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2019/07/12/web/django/django-apache/" title="windows平台使用apache部署Django项目"><img class="cover" src="https://i.loli.net/2020/06/03/KmiQ2kSAJn4X3vZ.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-07-12</div><div class="title">windows平台使用apache部署Django项目</div></div></a></div><div><a href="/2020/11/04/web/django/django-nginx/" title="Ubuntu平台使用nginx部署Django项目"><img class="cover" src="https://i.loli.net/2020/06/03/KmiQ2kSAJn4X3vZ.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-11-04</div><div class="title">Ubuntu平台使用nginx部署Django项目</div></div></a></div><div><a href="/2019/04/24/python/matplotlib/python-matplotlib-01/" title="Python之Matplotlib库学习(1)"><img class="cover" src="https://i.loli.net/2020/07/07/OxwJ84QzgPTfcpI.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-04-24</div><div class="title">Python之Matplotlib库学习(1)</div></div></a></div><div><a href="/2019/04/25/python/matplotlib/python-matplotlib-02/" title="Python之Matplotlib库学习(2)"><img class="cover" src="https://i.loli.net/2020/07/07/OxwJ84QzgPTfcpI.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-04-25</div><div class="title">Python之Matplotlib库学习(2)</div></div></a></div><div><a href="/2020/01/01/python/matplotlib/python-matplotlib-03/" title="Python之Matplotlib库学习(3)"><img class="cover" src="https://i.loli.net/2020/07/07/OxwJ84QzgPTfcpI.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-01-01</div><div class="title">Python之Matplotlib库学习(3)</div></div></a></div><div><a href="/2020/10/13/python/matplotlib/python-matplotlib-nested%20pie%20chart/" title="使用Matplotlib绘制嵌套饼图"><img class="cover" src="https://i.loli.net/2020/07/07/OxwJ84QzgPTfcpI.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-10-13</div><div class="title">使用Matplotlib绘制嵌套饼图</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2020/06/03/OFvA9uNmodI8tki.png" onerror="this.onerror=null;this.src='/assets/blogImg/404.jpg'" alt="avatar"/></div><div class="author-info__name">zzZ5</div><div class="author-info__description">忙得要命</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">44</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">22</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zzZ5"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/zzZ5" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://space.bilibili.com/11657777" target="_blank" title="Bilibili"><i class="fa-brands fa-bilibili"></i></a><a class="social-icon" href="mailto:baoju_liu@foxmail.com" target="_blank" title="Email"><i class="fa fa-envelope"></i></a><a class="social-icon" href="/atom.xml" target="_blank" title="RSS"><i class="fa fa-rss"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Time will tell</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%B4%E5%9C%A8%E5%89%8D%E9%9D%A2"><span class="toc-number">1.</span> <span class="toc-text">说在前面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="toc-number">2.</span> <span class="toc-text">开发环境搭建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90"><span class="toc-number">3.</span> <span class="toc-text">项目需求分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1"><span class="toc-number">4.</span> <span class="toc-text">数据库设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E7%AB%A0%E8%A1%A8%E7%BB%93%E6%9E%84"><span class="toc-number">4.1.</span> <span class="toc-text">文章表结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B9%BB%E7%81%AF%E7%89%87%E8%A1%A8%E7%BB%93%E6%9E%84"><span class="toc-number">4.2.</span> <span class="toc-text">幻灯片表结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E7%AB%A0%E5%88%86%E7%B1%BB%E8%A1%A8"><span class="toc-number">4.3.</span> <span class="toc-text">文章分类表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E7%AB%A0%E6%A0%87%E7%AD%BE%E8%A1%A8"><span class="toc-number">4.4.</span> <span class="toc-text">文章标签表</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E5%88%9B%E5%BB%BA%E4%BB%A5%E5%8F%8A%E9%85%8D%E7%BD%AE"><span class="toc-number">5.</span> <span class="toc-text">项目创建以及配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE"><span class="toc-number">5.1.</span> <span class="toc-text">创建项目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#myblog-settings-py%E9%85%8D%E7%BD%AE"><span class="toc-number">5.2.</span> <span class="toc-text">myblog&#x2F;settings.py配置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Django-ORM%E5%88%9B%E5%BB%BA"><span class="toc-number">6.</span> <span class="toc-text">Django ORM创建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Admin%E7%AE%A1%E7%90%86%E7%95%8C%E9%9D%A2%E8%AE%BE%E8%AE%A1"><span class="toc-number">7.</span> <span class="toc-text">Admin管理界面设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#URL%E8%AE%BE%E8%AE%A1"><span class="toc-number">8.</span> <span class="toc-text">URL设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Views%E8%A7%86%E5%9B%BE%E5%87%BD%E6%95%B0"><span class="toc-number">9.</span> <span class="toc-text">Views视图函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF%E6%90%AD%E5%BB%BA"><span class="toc-number">10.</span> <span class="toc-text">模板搭建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%84%E4%B8%AA%E9%A1%B5%E9%9D%A2%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-number">11.</span> <span class="toc-text">各个页面的实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E5%90%8E%E5%86%8D%E8%AF%B4%E4%B8%A4%E5%8F%A5"><span class="toc-number">12.</span> <span class="toc-text">最后再说两句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">13.</span> <span class="toc-text">参考文献</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/09/13/others/docker/" title="Docker使用说明"><img src="https://s2.loli.net/2023/09/13/nS6LMRyXTewZdAJ.png" onerror="this.onerror=null;this.src='/assets/blogImg/404.jpg'" alt="Docker使用说明"/></a><div class="content"><a class="title" href="/2023/09/13/others/docker/" title="Docker使用说明">Docker使用说明</a><time datetime="2023-09-13T01:49:00.000Z" title="发表于 2023-09-13 09:49:00">2023-09-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/09/01/diary/diary-2023-0901/" title="开始更新"><img src="https://i.loli.net/2020/06/03/uhAQD4IUr2kfoM6.gif" onerror="this.onerror=null;this.src='/assets/blogImg/404.jpg'" alt="开始更新"/></a><div class="content"><a class="title" href="/2023/09/01/diary/diary-2023-0901/" title="开始更新">开始更新</a><time datetime="2023-09-01T07:32:00.000Z" title="发表于 2023-09-01 15:32:00">2023-09-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/03/16/lot/mosquitto/" title="Ubuntu上使用Mosqitto部署Mqtt服务器"><img src="https://i.loli.net/2021/03/17/17lSbmuzf4wLnJh.png" onerror="this.onerror=null;this.src='/assets/blogImg/404.jpg'" alt="Ubuntu上使用Mosqitto部署Mqtt服务器"/></a><div class="content"><a class="title" href="/2021/03/16/lot/mosquitto/" title="Ubuntu上使用Mosqitto部署Mqtt服务器">Ubuntu上使用Mosqitto部署Mqtt服务器</a><time datetime="2021-03-16T13:11:00.000Z" title="发表于 2021-03-16 21:11:00">2021-03-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/11/04/web/django/django-nginx/" title="Ubuntu平台使用nginx部署Django项目"><img src="https://i.loli.net/2020/06/03/KmiQ2kSAJn4X3vZ.png" onerror="this.onerror=null;this.src='/assets/blogImg/404.jpg'" alt="Ubuntu平台使用nginx部署Django项目"/></a><div class="content"><a class="title" href="/2020/11/04/web/django/django-nginx/" title="Ubuntu平台使用nginx部署Django项目">Ubuntu平台使用nginx部署Django项目</a><time datetime="2020-11-04T08:06:00.000Z" title="发表于 2020-11-04 16:06:00">2020-11-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/10/13/python/matplotlib/python-matplotlib-nested%20pie%20chart/" title="使用Matplotlib绘制嵌套饼图"><img src="https://i.loli.net/2020/07/07/OxwJ84QzgPTfcpI.png" onerror="this.onerror=null;this.src='/assets/blogImg/404.jpg'" alt="使用Matplotlib绘制嵌套饼图"/></a><div class="content"><a class="title" href="/2020/10/13/python/matplotlib/python-matplotlib-nested%20pie%20chart/" title="使用Matplotlib绘制嵌套饼图">使用Matplotlib绘制嵌套饼图</a><time datetime="2020-10-13T01:30:00.000Z" title="发表于 2020-10-13 09:30:00">2020-10-13</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://i.loli.net/2020/06/03/KmiQ2kSAJn4X3vZ.png')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By zzZ5</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="/js/tw_cn.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const initValine = () => {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'wugk9aIpc580sE0GdxsCb7LL-MdYXbMMI',
+      appKey: 'WmxJKdt4J543WQWOM9X0Usyt',
+      avatar: 'monsterid',
+      serverURLs: 'https://wugk9aip.api.lncldglobal.com',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: false
+    }, null))
+  }
+
+  const loadValine = async () => {
+    if (typeof Valine === 'function') initValine()
+    else {
+      await getScript('https://cdn.jsdelivr.net/npm/valine@1.5.1/dist/Valine.min.js')
+      initValine()
+    }
+  }
+
+  if ('Valine' === 'Valine' || !false) {
+    if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+    else setTimeout(loadValine, 0)
+  } else {
+    window.loadOtherComment = loadValine
+  }
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

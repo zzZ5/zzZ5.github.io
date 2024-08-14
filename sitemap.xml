@@ -1,0 +1,684 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>https://zzz5.xyz/2023/09/13/others/docker/</loc>
+    
+    <lastmod>2023-09-13</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/photo/index.html</loc>
+    
+    <lastmod>2023-09-08</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/2021/03/16/lot/mosquitto/</loc>
+    
+    <lastmod>2023-09-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/2023/09/01/diary/diary-2023-0901/</loc>
+    
+    <lastmod>2023-09-01</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/2020/10/13/python/matplotlib/python-matplotlib-nested%20pie%20chart/</loc>
+    
+    <lastmod>2021-03-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/music/index.html</loc>
+    
+    <lastmod>2020-11-15</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/2020/11/04/web/django/django-nginx/</loc>
+    
+    <lastmod>2020-11-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/2019/07/12/web/django/django-apache/</loc>
+    
+    <lastmod>2020-11-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/2020/07/25/python/seaborn/python-seaborn/</loc>
+    
+    <lastmod>2020-10-25</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/2020/01/01/python/matplotlib/python-matplotlib-tips/</loc>
+    
+    <lastmod>2020-10-07</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/2020/07/21/web/django/django-blog/</loc>
+    
+    <lastmod>2020-07-29</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/2020/06/30/python/scikit-learn/sklearn-decision%20tree/</loc>
+    
+    <lastmod>2020-07-21</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/2020/07/08/python/scikit-learn/sklearn-dimension%20reduction/</loc>
+    
+    <lastmod>2020-07-21</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/2020/07/10/python/others/python-designPatterns-02/</loc>
+    
+    <lastmod>2020-07-15</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/2020/07/12/python/pandas/python-pandas-03/</loc>
+    
+    <lastmod>2020-07-12</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/2019/04/20/python/numpy/python-numpy-01/</loc>
+    
+    <lastmod>2020-07-12</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/2020/06/25/others/graphviz/</loc>
+    
+    <lastmod>2020-07-12</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/2020/05/28/python/others/python-designPatterns-01/</loc>
+    
+    <lastmod>2020-07-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/2019/04/23/python/numpy/python-numpy-04/</loc>
+    
+    <lastmod>2020-07-09</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/2019/04/22/python/numpy/python-numpy-03/</loc>
+    
+    <lastmod>2020-07-07</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/2019/04/21/python/numpy/python-numpy-02/</loc>
+    
+    <lastmod>2020-07-07</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/2019/04/26/python/pandas/python-pandas-01/</loc>
+    
+    <lastmod>2020-07-07</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/2019/04/27/python/pandas/python-pandas-02/</loc>
+    
+    <lastmod>2020-07-07</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/2020/05/30/python/scipy/python-scipy-01/</loc>
+    
+    <lastmod>2020-07-07</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/2020/06/04/python/scipy/python-scipy-02/</loc>
+    
+    <lastmod>2020-07-07</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/2019/04/24/python/matplotlib/python-matplotlib-01/</loc>
+    
+    <lastmod>2020-07-07</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/2019/04/25/python/matplotlib/python-matplotlib-02/</loc>
+    
+    <lastmod>2020-07-07</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/2020/01/01/python/matplotlib/python-matplotlib-03/</loc>
+    
+    <lastmod>2020-07-07</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/2019/07/14/web/others/escape%20charcater/</loc>
+    
+    <lastmod>2020-07-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/2019/08/28/others/BNFandEBNF/</loc>
+    
+    <lastmod>2020-07-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/2019/08/02/web/jqyery/jquery-ajax/</loc>
+    
+    <lastmod>2020-07-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/2020/06/10/python/statistic/python-hypothesis%20testing/</loc>
+    
+    <lastmod>2020-07-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/2019/05/11/python/rules/python-rules-language/</loc>
+    
+    <lastmod>2020-07-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/2019/05/11/python/rules/python-rules-style/</loc>
+    
+    <lastmod>2020-07-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/2019/05/09/python/rules/python-rule-tips/</loc>
+    
+    <lastmod>2020-07-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/2019/07/31/python/rules/python-rule-structure/</loc>
+    
+    <lastmod>2020-07-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/2019/05/01/python/others/python-scrapy/</loc>
+    
+    <lastmod>2020-07-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/2019/04/28/python/others/python-requests/</loc>
+    
+    <lastmod>2020-07-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/2019/04/30/python/others/python-re/</loc>
+    
+    <lastmod>2020-07-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/2019/04/29/python/others/python-beautiful%20soup/</loc>
+    
+    <lastmod>2020-07-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/2020/05/28/python/others/python-pipy/</loc>
+    
+    <lastmod>2020-07-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/2019/05/03/python/crawler/crawler-02/</loc>
+    
+    <lastmod>2020-07-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/2019/05/04/python/crawler/crawler-03/</loc>
+    
+    <lastmod>2020-07-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/2019/05/02/python/crawler/crawler-01/</loc>
+    
+    <lastmod>2020-07-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/links/index.html</loc>
+    
+    <lastmod>2020-07-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/2019/05/05/diary/diary-2019-0505/</loc>
+    
+    <lastmod>2020-06-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/2019/08/06/diary/diary-2019-0806/</loc>
+    
+    <lastmod>2020-06-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/about/index.html</loc>
+    
+    <lastmod>2020-06-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/categories/index.html</loc>
+    
+    <lastmod>2020-06-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/messageboard/index.html</loc>
+    
+    <lastmod>2020-06-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/tags/index.html</loc>
+    
+    <lastmod>2020-06-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+
+  <url>
+    <loc>https://zzz5.xyz/</loc>
+    <lastmod>2024-08-14</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  
+  <url>
+    <loc>https://zzz5.xyz/tags/%E5%85%AC%E5%91%8A/</loc>
+    <lastmod>2024-08-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/tags/lot/</loc>
+    <lastmod>2024-08-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/tags/mosqitto/</loc>
+    <lastmod>2024-08-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/tags/Docker/</loc>
+    <lastmod>2024-08-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/tags/Graphviz/</loc>
+    <lastmod>2024-08-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/tags/%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/</loc>
+    <lastmod>2024-08-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/tags/python/</loc>
+    <lastmod>2024-08-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/tags/matplotlib/</loc>
+    <lastmod>2024-08-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/tags/numpy/</loc>
+    <lastmod>2024-08-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/tags/beautiful-soup/</loc>
+    <lastmod>2024-08-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/tags/design-pattern/</loc>
+    <lastmod>2024-08-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/tags/pypi/</loc>
+    <lastmod>2024-08-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/tags/re/</loc>
+    <lastmod>2024-08-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/tags/requests/</loc>
+    <lastmod>2024-08-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/tags/scrapy/</loc>
+    <lastmod>2024-08-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/tags/pandas/</loc>
+    <lastmod>2024-08-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/tags/sklearn/</loc>
+    <lastmod>2024-08-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/tags/scipy/</loc>
+    <lastmod>2024-08-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/tags/seaborn/</loc>
+    <lastmod>2024-08-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/tags/django/</loc>
+    <lastmod>2024-08-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/tags/jquery/</loc>
+    <lastmod>2024-08-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/tags/escape-sequence/</loc>
+    <lastmod>2024-08-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+
+  
+  <url>
+    <loc>https://zzz5.xyz/categories/%E6%97%A5%E8%AE%B0/</loc>
+    <lastmod>2024-08-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/categories/%E7%89%A9%E8%81%94%E7%BD%91/</loc>
+    <lastmod>2024-08-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/categories/%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB/</loc>
+    <lastmod>2024-08-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/categories/%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/</loc>
+    <lastmod>2024-08-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/categories/%E7%A7%91%E5%AD%A6%E8%AE%A1%E7%AE%97/</loc>
+    <lastmod>2024-08-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/categories/python/</loc>
+    <lastmod>2024-08-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/categories/python%E6%8A%80%E5%B7%A7%E5%92%8C%E8%A7%84%E8%8C%83/</loc>
+    <lastmod>2024-08-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zzz5.xyz/categories/web/</loc>
+    <lastmod>2024-08-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+</urlset>
