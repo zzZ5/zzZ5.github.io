@@ -6,7 +6,7 @@
   <link href="https://zzz5.xyz/atom.xml" rel="self"/>
   
   <link href="https://zzz5.xyz/"/>
-  <updated>2023-09-13T02:23:19.461Z</updated>
+  <updated>2024-10-16T14:00:40.784Z</updated>
   <id>https://zzz5.xyz/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Ubuntu上使用Mosqitto部署Mqtt服务器</title>
+    <link href="https://zzz5.xyz/2024/10/16/lot/arduino-esp32/"/>
+    <id>https://zzz5.xyz/2024/10/16/lot/arduino-esp32/</id>
+    <published>2024-10-16T14:00:00.000Z</published>
+    <updated>2024-10-16T14:00:40.784Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2>]]></content>
+    
+    
+    <summary type="html">简单介绍如何在esp32上使用arduino.</summary>
+    
+    
+    
+    <category term="物联网" scheme="https://zzz5.xyz/categories/%E7%89%A9%E8%81%94%E7%BD%91/"/>
+    
+    
+    <category term="lot" scheme="https://zzz5.xyz/tags/lot/"/>
+    
+    <category term="arduino" scheme="https://zzz5.xyz/tags/arduino/"/>
+    
+    <category term="esp32" scheme="https://zzz5.xyz/tags/esp32/"/>
+    
+  </entry>
   
   <entry>
     <title>Docker使用说明</title>
@@ -445,25 +470,6 @@
     <category term="python" scheme="https://zzz5.xyz/tags/python/"/>
     
     <category term="matplotlib" scheme="https://zzz5.xyz/tags/matplotlib/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>BNF范式和EBNF范式详解</title>
-    <link href="https://zzz5.xyz/2019/08/28/others/BNFandEBNF/"/>
-    <id>https://zzz5.xyz/2019/08/28/others/BNFandEBNF/</id>
-    <published>2019-08-28T09:03:00.000Z</published>
-    <updated>2020-07-02T13:36:48.000Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="定义编程语言的语言"><a href="#定义编程语言的语言" class="headerlink" title="定义编程语言的语言"></a>定义编程语言的语言</h2><p>编程语言, 协议规范, 查询语言, 文件格式, 模式语言, 内存布局, 配置文件, 标记语言, 格式化语言和元语言等等塑造了我们计算的方式. 那么, 是什么塑造了这些语言呢?</p><h2 id="BNF范式"><a href="#BNF范式" class="headerlink" title="BNF范式"></a>BNF范式</h2><p>BNF范式(BNF: Backus-Naur Form 的缩写)即巴科斯范式, 是由 John Backus 和 Peter Naur 首先引入的用来描述计算机语言语法的符号集.<br>现在, 几乎每一位新编程语言书籍的作者都使用巴科斯范式来定义编程语言的语法规则.</p><h3 id="BNF范式的内容"><a href="#BNF范式的内容" class="headerlink" title="BNF范式的内容"></a>BNF范式的内容</h3><p>BNF范式中的每个标准语法都具有以下结构:</p><p><code>name ::= expansion</code></p><p>其中 ::&#x3D;&#x3D; 符号表示为 “可扩展为” 或 “可替换为”, “可定义为”.<br>在某些文本中, name 也称为非终止符, 一般为语言中某些抽象的概念.</p><p>BNF范式中的每个 name 都用尖括号&lt;&gt;括起来, 无论它出现在语法中的何处.<br>expansion 是包含终止符和非终止符的表达式, 通过排序和选择连接在一起.<br>终止符是像 + 或 function 这样的字符, 或者是一类字符 (如 integer), 一般为可以直接出现在语言中的符号.</p><p>竖线&#124; 表示选择, 表示在其左右两边任选一项, 相当于 “or” .<br>双引号”” 表示为其原本含义.</p><h3 id="BNF范式示例"><a href="#BNF范式示例" class="headerlink" title="BNF范式示例"></a>BNF范式示例</h3><p>在BNF中, 经典的表达式语法是:</p><figure class="highlight bnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">&lt;expr&gt;</span> ::= &lt;term&gt; + &lt;expr&gt;</span><br><span class="line">        |  <span class="attribute">&lt;term&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="attribute">&lt;term&gt;</span> ::= &lt;factor&gt; * &lt;term&gt;</span><br><span class="line">        |  <span class="attribute">&lt;factor&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="attribute">&lt;factor&gt;</span> ::= ( &lt;expr&gt; )</span><br><span class="line">          |  <span class="attribute">&lt;const&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="attribute">&lt;const&gt;</span> ::= integer</span><br></pre></td></tr></table></figure><p>C语言的声明语句可以用BNF这样描述:</p><figure class="highlight bnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">&lt;声明语句&gt;</span> ::= &lt;类型&gt;&lt;标识符&gt;; | &lt;类型&gt;&lt;标识符&gt;[&lt;数字&gt;];</span><br></pre></td></tr></table></figure><p>这一句中 &lt;声明语句&gt; 这个非终结符(语言中某些抽象的概念)被定义成了两种形式(上面用 &#124; 隔开的两部分), 同时在这里引入了三个终结符(可以直接出现在语言中的符号): 分号; , 左方括号[ , 右方括号 ].</p><h2 id="EBNF范式"><a href="#EBNF范式" class="headerlink" title="EBNF范式"></a>EBNF范式</h2><p>EBNF范式(Extended Backus-Naur form), 是对BNF范式的扩展.</p><h3 id="EBNF范式的内容"><a href="#EBNF范式的内容" class="headerlink" title="EBNF范式的内容"></a>EBNF范式的内容</h3><p>虽然EBNF是对BNF的扩展, 但并非所有扩展都是严格意义上的超集, 因为有些更改了规则定义关系: 将 ::&#x3D; 更改为 &#x3D; , 而另一些则删除了非终止符的尖括号(所以可以不必使用尖括号).</p><p>比EBNF范式之间的微小语法差异更重要的是扩展中允许的附加操作.</p><p>使用了在标准中提议为正规表示的下列字符:</p><table><thead><tr><th>用途</th><th>符号表示</th></tr></thead><tbody><tr><td>定义</td><td>&#x3D;  &#124; ::&#x3D;</td></tr><tr><td>串接</td><td>,</td></tr><tr><td>终止</td><td>;</td></tr><tr><td>分隔</td><td>&#124;</td></tr><tr><td>可选</td><td>[ … ]</td></tr><tr><td>重复</td><td>{ … }</td></tr><tr><td>分组</td><td>( … )</td></tr><tr><td>双引号</td><td>“ … “</td></tr><tr><td>单引号</td><td>‘ … ‘</td></tr><tr><td>注释</td><td>(* … *)</td></tr><tr><td>特殊序列</td><td>? … ?</td></tr><tr><td>除外</td><td>-</td></tr></tbody></table><h3 id="EBNF范式示例"><a href="#EBNF范式示例" class="headerlink" title="EBNF范式示例"></a>EBNF范式示例</h3><p>以BNF风格定义为:</p><figure class="highlight bnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">&lt;signed number&gt;</span> = <span class="attribute">&lt;sign&gt;</span> , <span class="attribute">&lt;number&gt;</span> | <span class="attribute">&lt;number&gt;</span> ;</span><br></pre></td></tr></table></figure><p>可以在EBNF中表示为:</p><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;signed number&gt; = [ &lt;sign&gt; , ] &lt;number&gt; ;</span><br></pre></td></tr></table></figure><p>只允许赋值的简单编程语言可以用 EBNF 定义为:</p><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">program</span> = <span class="string">&#x27;PROGRAM&#x27;</span> , white space , identifier , white space ,</span><br><span class="line">           <span class="string">&#x27;BEGIN&#x27;</span> , white space ,</span><br><span class="line">           &#123; assignment , <span class="string">&quot;;&quot;</span> , white space &#125; ,</span><br><span class="line">           <span class="string">&#x27;END.&#x27;</span> ;</span><br><span class="line"><span class="attribute">identifier</span> = alphabetic character , [ &#123; alphabetic character | digit &#125; ] ;</span><br><span class="line"><span class="attribute">number</span> = [ <span class="string">&quot;-&quot;</span> ] , digit , [ &#123; digit &#125; ] ;</span><br><span class="line"><span class="attribute">string</span> = <span class="string">&#x27;&quot;&#x27;</span> , &#123; all characters − <span class="string">&#x27;&quot;&#x27;</span> &#125; , <span class="string">&#x27;&quot;&#x27;</span> ;</span><br><span class="line"><span class="attribute">assignment</span> = identifier , <span class="string">&quot;:=&quot;</span> , ( number | identifier | string ) ;</span><br><span class="line"><span class="attribute">alphabetic character</span> = <span class="string">&quot;A&quot;</span> | <span class="string">&quot;B&quot;</span> | <span class="string">&quot;C&quot;</span> | <span class="string">&quot;D&quot;</span> | <span class="string">&quot;E&quot;</span> | <span class="string">&quot;F&quot;</span> | <span class="string">&quot;G&quot;</span></span><br><span class="line">                     | <span class="string">&quot;H&quot;</span> | <span class="string">&quot;I&quot;</span> | <span class="string">&quot;J&quot;</span> | <span class="string">&quot;K&quot;</span> | <span class="string">&quot;L&quot;</span> | <span class="string">&quot;M&quot;</span> | <span class="string">&quot;N&quot;</span></span><br><span class="line">                     | <span class="string">&quot;O&quot;</span> | <span class="string">&quot;P&quot;</span> | <span class="string">&quot;Q&quot;</span> | <span class="string">&quot;R&quot;</span> | <span class="string">&quot;S&quot;</span> | <span class="string">&quot;T&quot;</span> | <span class="string">&quot;U&quot;</span></span><br><span class="line">                     | <span class="string">&quot;V&quot;</span> | <span class="string">&quot;W&quot;</span> | <span class="string">&quot;X&quot;</span> | <span class="string">&quot;Y&quot;</span> | <span class="string">&quot;Z&quot;</span> ;</span><br><span class="line"><span class="attribute">digit</span> = <span class="string">&quot;0&quot;</span> | <span class="string">&quot;1&quot;</span> | <span class="string">&quot;2&quot;</span> | <span class="string">&quot;3&quot;</span> | <span class="string">&quot;4&quot;</span> | <span class="string">&quot;5&quot;</span> | <span class="string">&quot;6&quot;</span> | <span class="string">&quot;7&quot;</span> | <span class="string">&quot;8&quot;</span> | <span class="string">&quot;9&quot;</span> ;</span><br><span class="line"><span class="attribute">white space</span> = <span class="meta">? white space characters ?</span> ;</span><br><span class="line"><span class="attribute">all characters</span> = <span class="meta">? all visible characters ?</span> ;</span><br></pre></td></tr></table></figure><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>EBNF 排除了 BNF 的一些缺陷:</p><ul><li><p>BNF 为自身使用了符号 (&lt;, &gt;, |, ::&#x3D;). 当它们出现在要定义的语言中的时候, BNF 不能不加以修改或解释的使用.</p></li><li><p>BNF-语法在一行中只表示一个规则.<br>EBNF 解决了这些问题:</p></li><li><p>终结符被严格的包围在引号 (“…” 或 ‘…’) 中. 给非终结符的尖括号 (“&lt;…&gt;”)可以省略.</p></li><li><p>通常使用终止字符分号结束一个规则.</p></li></ul><p>进一步还提供了定义重复次数, 排除法选择(比如除了引号的所有字符)和注释等的增强机制.</p><p>不管所有这些增强, EBNF 在能定义的语言的意义上不比 BNF 更强大. 在原理上用 EBNF 定义的任何文法都可以用 BNF 表达. 但是经常导致可观的更多规则的表示.</p><p>在某些场合任何扩展的 BNF 都被称为 EBNF.</p><h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p><em>1. <a href="https://zh.wikipedia.org/wiki/%E6%89%A9%E5%B1%95%E5%B7%B4%E7%A7%91%E6%96%AF%E8%8C%83%E5%BC%8F">扩展巴科斯范式 - 维基百科，自由的百科全书</a></em><br><em>2. <a href="https://www.cnblogs.com/zxsoft/archive/2009/09/05/1560984.html">什么是BNF范式,什么又是EBNF范式? - 张旋 - 博客园</a></em></p>]]></content>
-    
-    
-    <summary type="html">详解了常见的语言表示法 Backus-Naur范式(BNF) 和 扩展的Backus-Naur范式(EBNF).</summary>
-    
-    
-    
-    <category term="杂七杂八" scheme="https://zzz5.xyz/categories/%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB/"/>
-    
     
   </entry>
   
